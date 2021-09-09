@@ -178,9 +178,9 @@ class Datasets():
             self.label_text2label_id = {"entailment": 2, "contradiction": 0, "neutral": 1}
 
         elif (dataset_name == "bustm"):
-            self.train_path = r"./datasets/few_clue/bustm/train_few_all.json"
-            self.dev_path = r"./datasets/few_clue/bustm/dev_few_all.json"
-            self.test_path = r"./datasets/few_clue/bustm/test_public.json"
+            self.train_path = r"./datasets/clue_datasets/bustm/train_few_all.json"
+            self.dev_path = r"./datasets/clue_datasets/bustm/dev_few_all.json"
+            self.test_path = r"./datasets/clue_datasets/bustm/test_public.json"
             self.patterns = [['不同', '相同'], ['意思不同', '意思相同'], ['有差距', '类似'],
                              ['以上两句话意思不同', '以上两句话意思相同']]
             self.connection = ['和', '。', '；']

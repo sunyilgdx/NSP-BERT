@@ -212,11 +212,13 @@ if __name__ == "__main__":
     model_name = 'uer-mixed-bert-base'
 
     # Choose a dataset----------------------------------------------------------------------
-    # dataset_names = ['bustm', 'ocnli', 'csl']
-    dataset_name = 'csl'
+    # dataset_names = ['ocnli', 'bustm', 'csl']
+    dataset_name = 'bustm'
 
-    # Prefix or Suffix
-    is_pre = False
+    # Prefix or Suffix.
+    # Defult settings in our paper.
+    # {'bustm':True, 'ocnli':True, 'csl':False}
+    is_pre = True
 
 
     # Load model and dataset class

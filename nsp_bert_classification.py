@@ -38,7 +38,7 @@ class data_generator(DataGenerator):
 
 def evaluate(data_generator_list, data, note=""):
 
-    print("\n*******************Start to Zero-Shot predict on {}*******************".format(note), flush=True)
+    print("\n*******************Start to Zero-Shot predict on 【{}】*******************".format(note), flush=True)
     patterns_logits = [[] for _ in patterns]
     for i in range(len(data_generator_list)):
         print("\nPattern{}".format(i), flush=True)
@@ -113,5 +113,5 @@ if __name__ == "__main__":
     )
 
     # Zero-Shot predict and evaluate-------------------------------------------------------
-    evaluate(dev_generator_list, dev_data, note="【Dev Set】")
-    evaluate(test_generator_list, test_data, note="【Test Set】")
+    evaluate(dev_generator_list, dev_data, note="Dev Set")
+    evaluate(test_generator_list, test_data, note="Test Set")
