@@ -54,11 +54,24 @@ We can run individual python files in the project directly to evaluate our NSP-B
 
 ```
 NSP-BERT
+    |- datasets
+        |- clue_datasets
+           |- ...
+        |- DuEL 2.0
+           |- dev.json
+           |- kb.json
+    |- models
+        |- uer_mixed_corpus_bert_base
+           |- bert_config.json
+           |- vocab.txt
+           |- bert_model.ckpt...
+           |- ...
     |- nsp_bert_classification.py             # Single Sentence Classification
     |- nsp_bert_sentence_pair.py              # Sentence Pair Classification
     |- nsp_bert_cloze_style.py                # Cloze-style Task
     |- nsp_bert_coreference_resolution.py     # Coreference Resolution
     |- nsp_bert_entity_linking.py             # Entity Linking and Entity Typing
+    |- utils.py
 ```
 
 | Python File                            | Task                                 | Datasets                          |
