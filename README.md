@@ -84,6 +84,25 @@ NSP-BERT
 
 ## Baselines
 
+Reference FewCLUE, we choos 3 training scenarios, fine-tuning, few-shot and zero-shot.
+The baselines use Chineses-RoBERTa-Base and Chinses-GPT-1 as the backbone model.
+
+### Methods
+| Scenarios       | Methods                               |
+|-----------------|---------------------------------------|
+| **Fine-tuning** | *BERT, RoBERTa*                       |
+| **Few-Shot**    | *PET, ADAPET,  P-tuning, LM-BFF, EFL* |
+| **Zero-Shot**   | *GPT-zero, PET-zero*                  |
+
+### Downloads
+
+| Organization                                                                                             | Model Name              | Model Parameters     | Download Linking                                                            |
+|----------------------------------------------------------------------------------------------------------|-------------------------|----------------------|-----------------------------------------------------------------------------|
+| [huawei-noah](https://github.com/huawei-noah/Pretrained-Language-Model/tree/master/NEZHA-Gen-TensorFlow) | Chinese GPT             | L=12 H=769 A=12 102M | [Tensorflow](https://pan.baidu.com/s/1Bgle8TpcxHyuUz_jAXOBWw)               |
+| [HFL](https://github.com/ymcui/Chinese-BERT-wwm)                                                         | RoBERTa-wwm-ext | L=12 H=769 A=12 102M | [Tensorflow](https://pan.iflytek.com/link/98D11FAAF0F0DBCB094EE19CCDBC98BF) |
+
+
+
 ## Model Comparison
 
 ## Strategy Details
