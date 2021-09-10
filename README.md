@@ -113,3 +113,7 @@ The baselines use Chineses-RoBERTa-Base and Chinses-GPT-1 as the backbone model.
 
 
 ## Discussion
+
+* Sincce NSP-BERT is a sentence-level prompt-learning model, it is significantly superior to GPT-zero and PET-zero in terms of **Single Sentence Classification** tasks (*TNEWS, CSLDCP and IFLYTEK*). At the same time, it can solve the **Entity Linking** task (*DuEL2.0*), and the model is not limited by the non-fixed-length entity description, which GPT-zero and PET-zero cannot do this.
+* However, it doesn't work as well on **Token-Level** tasks, such as **Cloze-style** task and **Entity Typing**.
+* In future work, it is essential to extend NSP-BERT to the few-shot scenario.
