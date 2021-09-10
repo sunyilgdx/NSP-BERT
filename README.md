@@ -32,11 +32,11 @@ We should dowmload the checkpoints of different models. The *vocab.txt* and the 
 |---------------------------------------------------|------------------|-----------------------|-------------------------------------------------------------------------------------------------|------|
 | [Google](https://github.com/google-research/bert) | BERT-Chinese     | L=12 H=769 A=12 102M  | [Tensorflow](https://storage.googleapis.com/bert_models/2018_11_03/chinese_L-12_H-768_A-12.zip) |      |
 | [HFL](https://github.com/ymcui/Chinese-BERT-wwm)  | BERT-wwm         | L=12 H=769 A=12 102M  | [Tensorflow](https://pan.iflytek.com/link/A2483AD206EF85FD91569B498A3C3879) |      |
-| [HFL](https://github.com/ymcui/Chinese-BERT-wwm)  | BERT-wwm-ext     | L=12 H=769 A=12 102M  | [Tensorflow](https://pan.iflytek.com/link/A2483AD206EF85FD91569B498A3C3879)|  |
+|                                                   | BERT-wwm-ext     | L=12 H=769 A=12 102M  | [Tensorflow](https://pan.iflytek.com/link/A2483AD206EF85FD91569B498A3C3879)|  |
 | [UER](https://github.com/dbiir/UER-py)            | BERT-mixed-tiny  | L=3 H=384 A=6 14M     | [Pytorch](https://share.weiyun.com/yXx0lfUg)   | \* |
-| [UER](https://github.com/dbiir/UER-py)            | BERT-mixed-Small | L=6 H=512 A=8 31M     | [Pytorch](https://share.weiyun.com/fhcUanfy)   | \* |
-| [UER](https://github.com/dbiir/UER-py)            | BERT-mixed-Base  | L=12 H=769 A=12 102M  | [Pytorch](https://share.weiyun.com/5QOzPqq)   | \* |
-| [UER](https://github.com/dbiir/UER-py)            | BERT-mixed-Large | L=24 H=1024 A=16 327M | [Pytorch](https://share.weiyun.com/5G90sMJ)   | \* |
+|                                                   | BERT-mixed-Small | L=6 H=512 A=8 31M     | [Pytorch](https://share.weiyun.com/fhcUanfy)   | \* |
+|                                                   | BERT-mixed-Base  | L=12 H=769 A=12 102M  | [Pytorch](https://share.weiyun.com/5QOzPqq)   | \* |
+|                                                   | BERT-mixed-Large | L=24 H=1024 A=16 327M | [Pytorch](https://share.weiyun.com/5G90sMJ)   | \* |
 
 \* We need to use [UER's convert tool](https://github.com/dbiir/UER-py/blob/master/scripts/convert_bert_from_uer_to_original_tf.py) to convert UER pytorch to Original Tensorflow.
 
