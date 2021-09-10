@@ -14,7 +14,7 @@ On the [FewCLUE benchmark](https://github.com/CLUEbenchmark/FewCLUE), our NSP-BE
 | [Baselines](#Baselines) | Baseline results for several Chinese NLP datasets (partial) |
 | [Model Comparison](#Model-Comparison) | Compare the models published in this repository |
 | [Strategy Details](#Strategy-Details) | Some of the strategies used in the paper |
-| [Discussion and Discrimination](#Discussion-and-Discrimination) | Discussion and Discrimination for future work |
+| [Discussion](#Discussion) | Discussion and Discrimination for future work |
  
 ## Environment
 The environments are as follows:
@@ -31,10 +31,10 @@ We should dowmload the checkpoints of different models. The *vocab.txt* and the 
 | Organization                                      | Model Name       | Model Parameters      | Download Linking                                                                                | Tips |
 |---------------------------------------------------|------------------|-----------------------|-------------------------------------------------------------------------------------------------|------|
 | [Google](https://github.com/google-research/bert) | BERT-Chinese     | L=12 H=769 A=12 102M  | [Tensorflow](https://storage.googleapis.com/bert_models/2018_11_03/chinese_L-12_H-768_A-12.zip) |      |
-| [HFL](https://github.com/ymcui/Chinese-BERT-wwm)  | BERT-wwm         | L=12 H=769 A=12 102M  | [Tensorflow](https://pan.iflytek.com/link/A2483AD206EF85FD91569B498A3C3879) |      |
+| [HFL](https://github.com/ymcui/Chinese-BERT-wwm)  | BERT-wwm         | L=12 H=769 A=12 102M  | [Tensorflow](https://pan.iflytek.com/link/A2483AD206EF85FD91569B498A3C3879)|  |
 |                                                   | BERT-wwm-ext     | L=12 H=769 A=12 102M  | [Tensorflow](https://pan.iflytek.com/link/A2483AD206EF85FD91569B498A3C3879)|  |
-| [UER](https://github.com/dbiir/UER-py)            | BERT-mixed-tiny  | L=3 H=384 A=6 14M     | [Pytorch](https://share.weiyun.com/yXx0lfUg)   | \* |
-|                                                   | BERT-mixed-Small | L=6 H=512 A=8 31M     | [Pytorch](https://share.weiyun.com/fhcUanfy)   | \* |
+| [UER](https://github.com/dbiir/UER-py)            | BERT-mixed-tiny  | L=3  H=384 A=6  14M   | [Pytorch](https://share.weiyun.com/yXx0lfUg)  | \* |
+|                                                   | BERT-mixed-Small | L=6  H=512 A=8  31M   | [Pytorch](https://share.weiyun.com/fhcUanfy)  | \* |
 |                                                   | BERT-mixed-Base  | L=12 H=769 A=12 102M  | [Pytorch](https://share.weiyun.com/5QOzPqq)   | \* |
 |                                                   | BERT-mixed-Large | L=24 H=1024 A=16 327M | [Pytorch](https://share.weiyun.com/5G90sMJ)   | \* |
 
@@ -47,8 +47,27 @@ We use FewCLUE datasets and DuEL2.0 (CCKS2020) in our experiments.
 | FewCLUE            | https://github.com/CLUEbenchmark/FewCLUE/tree/main/datasets |
 | DuEL2.0 (CCKS2020) | https://aistudio.baidu.com/aistudio/competition/detail/83   |
 
-Put the datasets into the [NSP-BERT/datasets/](https://github.com/sunyilgdx/NSP-BERT/tree/main/datasets/)
+Put the datasets into the [NSP-BERT/datasets/](https://github.com/sunyilgdx/NSP-BERT/tree/main/datasets/).
+
 ## Use examples
+We can run individual python files in the project directly to evaluate our NSP-BERT.
+
+```
+NSP-BERT
+    |- nsp_bert_classification.py             # Single Sentence Classification
+    |- nsp_bert_sentence_pair.py              # Sentence Pair Classification
+    |- nsp_bert_cloze_style.py                # Cloze-style Task
+    |- nsp_bert_coreference_resolution.py     # Coreference Resolution
+    |- nsp_bert_entity_linking.py             # Entity Linking and Entity Typing
+```
+
+| Python File                            | Task                                 | Datasets                          |
+|----------------------------------------|--------------------------------------|-----------------------------------|
+| [nsp_bert_classification.py]()         | **Single Sentence Classification**   | *EPRSTMT, TNEWS, CSLDCP, IFLYTEK* |
+| [nsp_bert_sentence_pair.py]()          | **Sentence Pair Classification**     | *OCNLI, BUSTM, CSL*               |
+| [nsp_bert_cloze_style.py]()            | **Cloze-style Task**                 | *ChID*                            |
+| [nsp_bert_coreference_resolution.py]() | **Coreference Resolution**           | *CLUEWSC*                         |
+| [nsp_bert_entity_linking.py]()         | **Entity Linking and Entity Typing** | *DuEL2.0*                         |
 
 ## Baselines
 
@@ -56,4 +75,4 @@ Put the datasets into the [NSP-BERT/datasets/](https://github.com/sunyilgdx/NSP-
 
 ## Strategy Details
 
-## Discussion and Discrimination
+## Discussion
