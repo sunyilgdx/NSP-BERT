@@ -4,7 +4,6 @@
 # Date: 2021/6/30
 import json
 import random
-from pprint import pprint
 
 
 class Datasets():
@@ -167,12 +166,9 @@ class Datasets():
                  '这是一款笔记类软件', '这是一款办公类软件', '这是一款日程管理类软件', '这是一款女性类软件', '这是一款经营类软件', '这是一款收款类软件', '这是一款其他类软件']]
 
         elif (dataset_name == "ocnli"):
-            self.patterns = [['相同', '不同', '无关'], ['意思相同', '意思不同', '无法判断'], ['类似', '有差距', '难说'],
-                             ['以上两句话意思相同', '以上两句话意思不同', '以上两句话无法判断']]
             self.train_path = r"./datasets/clue_datasets/ocnli/train_few_all.json"
             self.dev_path = r"./datasets/clue_datasets/ocnli/dev_few_all.json"
             self.test_path = r"./datasets/clue_datasets/ocnli/test_public.json"
-            self.connection = ['和', '。', '；']
             self.labels = [0, 1, 2]
             self.label_texts = ["entailment", "contradiction", "neutral"]
             self.label_text2label_id = {"entailment": 2, "contradiction": 0, "neutral": 1}
@@ -181,9 +177,6 @@ class Datasets():
             self.train_path = r"./datasets/clue_datasets/bustm/train_few_all.json"
             self.dev_path = r"./datasets/clue_datasets/bustm/dev_few_all.json"
             self.test_path = r"./datasets/clue_datasets/bustm/test_public.json"
-            self.patterns = [['不同', '相同'], ['意思不同', '意思相同'], ['有差距', '类似'],
-                             ['以上两句话意思不同', '以上两句话意思相同']]
-            self.connection = ['和', '。', '；']
             self.labels = [0, 1]
 
         elif (dataset_name == "chid"):
@@ -276,9 +269,6 @@ class Datasets():
                     sentence2 = json.loads(l)['sentence2']
                     label = json.loads(l)['label']
                     text = "{}[SEP]{}".format(sentence1, sentence2)
-                    # keywords = json.loads(l)['keywords']
-                    # if(is_train):
-                    #     text = text + '。关键词：' + keywords
                     D.append((text, int(label)))
 
         elif (self.dataset_name == "chid"):
@@ -287,10 +277,6 @@ class Datasets():
                     content = json.loads(l)['content']
                     candidates = json.loads(l)['candidates']
                     label = json.loads(l)['answer']
-
-                    # keywords = json.loads(l)['keywords']
-                    # if(is_train):
-                    #     text = text + '。关键词：' + keywords
                     D.append((content, int(label), candidates))
 
         elif (self.dataset_name == "csl"):
@@ -299,14 +285,7 @@ class Datasets():
                     content = json.loads(l)['abst']
                     keywords = json.loads(l)['keyword']
                     label = json.loads(l)['label']
-
-                    # keywords = json.loads(l)['keywords']
-                    # if(is_train):
-                    #     text = text + '。关键词：' + keywords
-                    # D.append((content, int(label), keywords))
-                    # D.append((content + "[SEP]" + "上文的关键词是：" +",".join(keywords), int(label)))
                     D.append((content + "[SEP]" + ",".join(keywords), int(label)))
-                    # D.append((content + "[SEP]" + ' ', int(label)))
 
         elif (self.dataset_name == "cluewsc"):
             with open(filename, encoding='utf-8') as f:
@@ -319,7 +298,6 @@ class Datasets():
                     text = json.loads(l)['text']
                     label = json.loads(l)['label']
                     label = self.text2id[label]
-                    # D.append((text + "上文中{}是指".format(span2_text) + "[SEP]" + span1_text, int(label)))
                     D.append((text, int(label), span1_text, span2_text, span1_index, span2_index))
 
         elif (self.dataset_name == "duel2.0"):
@@ -366,7 +344,6 @@ class Datasets():
                         mention2id[alia].add(subject_id)
         return kb_list, mention2id, id2data, id2type
 
-
 class Model():
 
     def __init__(self, model_name=""):
@@ -374,6 +351,16 @@ class Model():
         self.config_path, self.checkpoint_path, self.dict_path = "", "", ""
 
         if (model_name == 'google-bert'):
+            self.config_path = './models/uncased_L-12_H-768_A-12/bert_config.json'
+            self.checkpoint_path = './models/uncased_L-12_H-768_A-12/bert_model.ckpt'
+            self.dict_path = './models/uncased_L-12_H-768_A-12/vocab.txt'
+
+        elif (model_name == 'google-bert-small'):
+            self.config_path = './models/uncased_L-8_H-512_A-8/bert_config.json'
+            self.checkpoint_path = './models/uncased_L-8_H-512_A-8/bert_model.ckpt'
+            self.dict_path = './models/uncased_L-8_H-512_A-8/vocab.txt'
+
+        elif (model_name == 'google-bert-zh'):
             self.config_path = './models/chinese_L-12_H-768_A-12/bert_config.json'
             self.checkpoint_path = './models/chinese_L-12_H-768_A-12/bert_model.ckpt'
             self.dict_path = './models/chinese_L-12_H-768_A-12/vocab.txt'

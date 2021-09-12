@@ -1,6 +1,6 @@
 ## Overview
 
-This is the code of our paper **[NSP-BERT: A Prompt-based Zero-Shot Learner Through an Original Pre-training Task —— Next Sentence Prediction](https://arxiv.org/abs/2109.03564)**. We use a sentence-level pre-training task NSP (Next Sentence Prediction) to realize prompt-learning and perform various downstream tasks, such as *single sentence classification*, *sentence pair classification*, *coreference resolution*, *cloze-style task*, *entity linking*, *entity typing*.
+This is the code of our paper **[NSP-BERT: A Prompt-based Zero-Shot Learner Through an Original Pre-training Task —— Next Sentence Prediction]()**. We use a sentence-level pre-training task NSP (Next Sentence Prediction) to realize prompt-learning and perform various downstream tasks, such as *single sentence classification*, *sentence pair classification*, *coreference resolution*, *cloze-style task*, *entity linking*, *entity typing*.
 
 On the [FewCLUE benchmark](https://github.com/CLUEbenchmark/FewCLUE), our NSP-BERT outperforms other zero-shot methods (GPT-1-zero and PET-zero) on most of these tasks and comes close to the few-shot methods. We hope NSP-BERT can be an unsupervised tool that can assist other language tasks or models.
 
@@ -47,7 +47,7 @@ We use FewCLUE datasets and DuEL2.0 (CCKS2020) in our experiments.
 | FewCLUE            | https://github.com/CLUEbenchmark/FewCLUE/tree/main/datasets |
 | DuEL2.0 (CCKS2020) | https://aistudio.baidu.com/aistudio/competition/detail/83   |
 
-Put the datasets into the [NSP-BERT/datasets/](https://github.com/sunyilgdx/NSP-BERT/tree/main/datasets/).
+Put the datasets into the [NSP-BERT/datasets/]().
 
 ## Use examples
 We can run individual python files in the project directly to evaluate our NSP-BERT.
