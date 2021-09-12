@@ -109,7 +109,7 @@ The baselines use Chineses-RoBERTa-Base and Chinses-GPT-1 as the backbone model.
 
 ## Strategy Details
 
-<br/><img src="./images/strategies.png" width="800"  alt="Strategies"/><br/>
+<br/><img src="./images/strategies.png" width="600"  alt="Strategies"/><br/>
 
 
 ## Discussion
