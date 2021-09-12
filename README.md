@@ -30,7 +30,8 @@ We should dowmload the checkpoints of different models. The *vocab.txt* and the 
 
 | Organization                                      | Model Name       | Model Parameters      | Download Linking                                                                                | Tips |
 |---------------------------------------------------|------------------|-----------------------|-------------------------------------------------------------------------------------------------|------|
-| [Google](https://github.com/google-research/bert) | BERT-Chinese     | L=12 H=769 A=12 102M  | [Tensorflow](https://storage.googleapis.com/bert_models/2018_11_03/chinese_L-12_H-768_A-12.zip) |      |
+| [Google](https://github.com/google-research/bert) | BERT-uncased     | L=12 H=769 A=12 102M  | [Tensorflow](https://storage.googleapis.com/bert_models/2020_02_20/uncased_L-12_H-768_A-12.zip) |      |
+|                                                   | BERT-Chinese     | L=12 H=769 A=12 102M  | [Tensorflow](https://storage.googleapis.com/bert_models/2018_11_03/chinese_L-12_H-768_A-12.zip) |      |
 | [HFL](https://github.com/ymcui/Chinese-BERT-wwm)  | BERT-wwm         | L=12 H=769 A=12 102M  | [Tensorflow](https://pan.iflytek.com/link/A2483AD206EF85FD91569B498A3C3879)|  |
 |                                                   | BERT-wwm-ext     | L=12 H=769 A=12 102M  | [Tensorflow](https://pan.iflytek.com/link/A2483AD206EF85FD91569B498A3C3879)|  |
 | [UER](https://github.com/dbiir/UER-py)            | BERT-mixed-tiny  | L=3  H=384 A=6  14M   | [Pytorch](https://share.weiyun.com/yXx0lfUg)  | \* |
