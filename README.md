@@ -10,7 +10,8 @@ On the [FewCLUE benchmark](https://github.com/CLUEbenchmark/FewCLUE), our NSP-BE
 |-|-|
 | [Environment](#Environment) | The required deployment environment |
 | [Downloads](#Downloads) | Download links for the models' checkpoints used by NSP-BERT |
-| [Use examples](#Use-examples) | Learn to use NSP-BERT for different downstream tasks |
+| [Demos](#Demos) | Chinese and English demos |
+| [Evaluation](#Evaluation) | Evaluate NSP-BERT for different downstream tasks |
 | [Baselines](#Baselines) | Baseline results for several Chinese NLP datasets (partial) |
 | [Model Comparison](#Model-Comparison) | Compare the models published in this repository |
 | [Strategy Details](#Strategy-Details) | Some of the strategies used in the paper |
@@ -50,7 +51,43 @@ We use FewCLUE datasets and DuEL2.0 (CCKS2020) in our experiments.
 
 Put the datasets into the [NSP-BERT/datasets/]().
 
-## Use examples
+## Demos
+Try to use *./demos/nsp_bert_classification_demo.py* and *./demos/nsp_bert_classification_demo_en.py* to accomplish your own classification tasks.
+Edit your own **Labels** and **Samples**, then create your own **Prompt Templates**, then you can classify them.
+
+```
+...
+label_names = ['entertainment', 'sports', 'music', 'games', 'economics', 'education']
+patterns = ["This is {} news".format(label) for label in label_names]
+demo_data_en = ['FIFA unveils biennial World Cup plan, UEFA threatens boycott',
+               'COVID vaccines hold up against severe Delta: US data',
+               'Justin Drew Bieber was born on March 1, 1994 at St. ',
+               'Horizon launches latest chip to take on global rivals',
+               'Twitch video gamers rise up to stop ‘hate raids’']
+...
+```
+**Output**
+```
+Sample 0:
+Original Text: FIFA unveils biennial World Cup plan, UEFA threatens boycott
+Predict label: sports
+Logits: [0.50525445, 0.9874593, 0.40805838, 0.9633584, 0.39732504, 0.22665949]
+
+Sample 1:
+Original Text: COVID vaccines hold up against severe Delta: US data
+Predict label: economics
+Logits: [0.8868228, 0.9359472, 0.795272, 0.93895626, 0.99118936, 0.86002237]
+
+Sample 2:
+Original Text: Justin Drew Bieber was born on March 1, 1994 at St. 
+Predict label: music
+Logits: [0.98517805, 0.97300863, 0.98871416, 0.95968705, 0.9250582, 0.9211884]
+...
+```
+
+
+
+## Evaluation
 We can run individual python files in the project directly to evaluate our NSP-BERT.
 
 ```
@@ -61,6 +98,9 @@ NSP-BERT
         |- DuEL 2.0
            |- dev.json
            |- kb.json
+    |- demos
+        |- nsp_bert_classification_demo.py
+        |- nsp_bert_classification_demo_en.py
     |- models
         |- uer_mixed_corpus_bert_base
            |- bert_config.json
