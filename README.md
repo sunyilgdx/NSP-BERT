@@ -1,6 +1,6 @@
 ## Overview
 
-This is the code of our paper **[NSP-BERT: A Prompt-based Zero-Shot Learner Through an Original Pre-training Task —— Next Sentence Prediction]()**. We use a sentence-level pre-training task NSP (Next Sentence Prediction) to realize prompt-learning and perform various downstream tasks, such as *single sentence classification*, *sentence pair classification*, *coreference resolution*, *cloze-style task*, *entity linking*, *entity typing*.
+This is the code of our paper **[NSP-BERT: A Prompt-based Zero-Shot Learner Through an Original Pre-training Task —— Next Sentence Prediction]()**. We use a **sentence-level** pre-training task **NSP (Next Sentence Prediction)** to realize prompt-learning and perform various downstream tasks, such as *single sentence classification*, *sentence pair classification*, *coreference resolution*, *cloze-style task*, *entity linking*, *entity typing*.
 
 On the [FewCLUE benchmark](https://github.com/CLUEbenchmark/FewCLUE), our NSP-BERT outperforms other zero-shot methods (GPT-1-zero and PET-zero) on most of these tasks and comes close to the few-shot methods. We hope NSP-BERT can be an unsupervised tool that can assist other language tasks or models.
 
