@@ -1,4 +1,4 @@
-## Overview
+## 概要
 
 这是我们论文 **[NSP-BERT: A Prompt-based Zero-Shot Learner Through an Original Pre-training Task —— Next Sentence Prediction](https://arxiv.org/abs/2109.03564)** 的源码. 我们利用了一个 **句子级别(sentence-level)** 的预训练任务 **NSP (下一句预测，Next Sentence Prediction)** 来实现不同的NLP下游任务, 例如 *单句分类(single sentence classification)*, *双句分类(sentence pair classification)*, *指代消解(coreference resolution)*, *完形填空(cloze-style task)*, *实体链接(entity linking)*, *实体类型识别(entity typing)*.
 
@@ -15,7 +15,7 @@
 | [基线模型](#基线模型)   | 基线模型介绍 |
 | [模型比较](#模型比较)   | 模型评测结果比较 |
 | [策略细节](#策略细节)   | 不同任务的策略 |
-| [探讨展望](#Discussion) | 对论文的探讨和展望 |
+| [探讨展望](#探讨展望) | 对论文的探讨和展望 |
  
 ## 开发环境
 开发环境如下所示:
@@ -57,31 +57,32 @@ tensorflow-gpu 1.15.0
 
 ```
 ...
-label_names = ['entertainment', 'sports', 'music', 'games', 'economics', 'education']
-patterns = ["This is {} news".format(label) for label in label_names]
-demo_data_en = ['FIFA unveils biennial World Cup plan, UEFA threatens boycott',
-               'COVID vaccines hold up against severe Delta: US data',
-               'Justin Drew Bieber was born on March 1, 1994 at St. ',
-               'Horizon launches latest chip to take on global rivals',
-               'Twitch video gamers rise up to stop ‘hate raids’']
+label_names = ['娱乐', '体育', '音乐', '电竞', '经济', '教育']
+patterns = ["这是一篇{}新闻".format(label) for label in label_names]
+demo_data_zh = ['梅西超越贝利成为南美射手王',
+                 '贾斯汀比伯发布新单曲',
+                 '比心APP被下架并永久关闭陪玩功能',
+                 '徐莉佳的伦敦奥运金牌氧化了',
+                 '10元芯片卖400元!芯片经销商被罚',
+                 '北京首批校外培训机构白名单公布']
 ...
 ```
 **输出**
 ```
 Sample 0:
-Original Text: FIFA unveils biennial World Cup plan, UEFA threatens boycott
-Predict label: sports
-Logits: [0.50525445, 0.9874593, 0.40805838, 0.9633584, 0.39732504, 0.22665949]
+Original Text: 梅西超越贝利成为南美射手王
+Predict label: 体育
+Logits: [0.67886037, 0.98553574, 0.16819017, 0.6733272, 0.29652277, 0.07275329]
 
 Sample 1:
-Original Text: COVID vaccines hold up against severe Delta: US data
-Predict label: economics
-Logits: [0.8868228, 0.9359472, 0.795272, 0.93895626, 0.99118936, 0.86002237]
+Original Text: 贾斯汀比伯发布新单曲
+Predict label: 音乐
+Logits: [0.95801944, 0.4572674, 0.9918983, 0.35939765, 0.3782271, 0.12813713]
 
 Sample 2:
-Original Text: Justin Drew Bieber was born on March 1, 1994 at St. 
-Predict label: music
-Logits: [0.98517805, 0.97300863, 0.98871416, 0.95968705, 0.9250582, 0.9211884]
+Original Text: 比心APP被下架并永久关闭陪玩功能
+Predict label: 娱乐
+Logits: [0.40367377, 0.23919956, 0.1673808, 0.20248286, 0.29829133, 0.122355804]
 ...
 ```
 
