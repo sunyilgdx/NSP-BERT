@@ -1,3 +1,5 @@
+**[English](https://github.com/sunyilgdx/NSP-BERT)** | **[中文](https://github.com/sunyilgdx/NSP-BERT/blob/main/README_zh.md)**
+
 ## Overview
 
 This is the code of our paper **[NSP-BERT: A Prompt-based Zero-Shot Learner Through an Original Pre-training Task —— Next Sentence Prediction](https://arxiv.org/abs/2109.03564)**. We use a **sentence-level** pre-training task **NSP (Next Sentence Prediction)** to realize prompt-learning and perform various downstream tasks, such as *single sentence classification*, *sentence pair classification*, *coreference resolution*, *cloze-style task*, *entity linking*, *entity typing*.
