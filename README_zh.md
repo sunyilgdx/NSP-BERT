@@ -167,3 +167,15 @@ NSP-BERT
 
 * 我们的代码基于[苏剑林](https://github.com/bojone)老师的[bert4keras](https://github.com/bojone/bert4keras)开源项目.
 * 感谢苏剑林老师, 他的系列博客[科学空间](https://kexue.fm/), 以及他的开源精神, 启发和激励了我的论文写作过程.
+
+## 引用
+```
+@misc{sun2021nspbert,
+    title={NSP-BERT: A Prompt-based Zero-Shot Learner Through an Original Pre-training Task--Next Sentence Prediction},
+    author={Yi Sun and Yu Zheng and Chao Hao and Hangping Qiu},
+    year={2021},
+    eprint={2109.03564},
+    archivePrefix={arXiv},
+    primaryClass={cs.CL}
+}
+```
