@@ -18,6 +18,7 @@ On the [FewCLUE benchmark](https://github.com/CLUEbenchmark/FewCLUE), our NSP-BE
 | [Model Comparison](#Model-Comparison) | Compare the models published in this repository |
 | [Strategy Details](#Strategy-Details) | Some of the strategies used in the paper |
 | [Discussion](#Discussion) | Discussion and Discrimination for future work |
+| [Acknowledgements](#Acknowledgements)| Acknowledgements|
  
 ## Environment
 The environments are as follows:
