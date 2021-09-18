@@ -166,3 +166,16 @@ The baselines use Chineses-RoBERTa-Base and Chinses-GPT-1 as the backbone model.
 
 * Our code is based on [Jianlin Su](https://github.com/bojone)'s [bert4keras](https://github.com/bojone/bert4keras).
 * Thanks to teacher Su Jianlin's blog, [Science Space](https://kexue.fm/), his series of blogs, and his open source spirit, which inspired and inspired my paper writing process.
+
+## Citation
+
+```
+@misc{sun2021nspbert,
+    title={NSP-BERT: A Prompt-based Zero-Shot Learner Through an Original Pre-training Task--Next Sentence Prediction},
+    author={Yi Sun and Yu Zheng and Chao Hao and Hangping Qiu},
+    year={2021},
+    eprint={2109.03564},
+    archivePrefix={arXiv},
+    primaryClass={cs.CL}
+}
+```
