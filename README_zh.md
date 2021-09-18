@@ -161,3 +161,9 @@ NSP-BERT
 * 由于 NSP-BERT 是一个句子级的 prompt-learning 模型, 相比于 GPT-zero and PET-zero, 其在 **Single Sentence Classification** 等任务上 (*TNEWS, CSLDCP and IFLYTEK*)有着显著的提高. 同时, 可以很好地完成 **实体链接** 任务 (*DuEL2.0*), 且不受限于不同长度地实体描述， 这是 GPT-zero 和 PET-zero 所不能做到的.
 * 但是, 其在 **词级别** 的任务上, 例如 **完形填空** 和 **实体类别识别** 上效果一般.
 * 在将来的工作中, 可以继续将其应用在Few-Shot场景中.
+
+## 鸣谢
+## Acknowledgements
+
+* 我们的代码基于[苏剑林](https://github.com/bojone)老师的[bert4keras](https://github.com/bojone/bert4keras)开源项目.
+* 感谢苏剑林老师, 他的系列博客[科学空间](https://kexue.fm/), 以及他的开源精神, 启发和激励了我的论文写作过程.
