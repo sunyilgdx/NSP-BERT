@@ -8,7 +8,7 @@
 
 ## 新闻
 
-2021/10/11 我们上传了几个英文分类任务的代码，**AG’s News, DBPedia, Amazon and IMDB**，十分感谢[Shengding Hu](https://github.com/ShengdingHu)和他的[KnowledgeablePromptTuning](https://github.com/ShengdingHu/KnowledgeablePromptTuning).
+2021/10/11 我们上传了几个英文分类任务的代码，**AG’s News, DBPedia, Amazon and IMDB**，经过简单的测试（1K测试样本），准备率大约为81.8, 70.9, 71.9 和 70.7。十分感谢[Shengding Hu](https://github.com/ShengdingHu)和他的[KnowledgeablePromptTuning](https://github.com/ShengdingHu/KnowledgeablePromptTuning).
 
 
 ## 目录
