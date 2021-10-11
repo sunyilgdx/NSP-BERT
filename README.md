@@ -51,6 +51,7 @@ We use FewCLUE datasets and DuEL2.0 (CCKS2020) in our experiments.
 |--------------------|-------------------------------------------------------------|
 | FewCLUE            | https://github.com/CLUEbenchmark/FewCLUE/tree/main/datasets |
 | DuEL2.0 (CCKS2020) | https://aistudio.baidu.com/aistudio/competition/detail/83   |
+| EnEval             | https://github.com/ShengdingHu/KnowledgeablePromptTuning    |
 
 Put the datasets into the [NSP-BERT/datasets/]().
 
@@ -101,6 +102,12 @@ NSP-BERT
         |- DuEL 2.0
            |- dev.json
            |- kb.json
+        |- enEval
+           |- agnews
+           |- amazon
+           |- dbpedia
+           |- imdb
+           
     |- demos
         |- nsp_bert_classification_demo.py
         |- nsp_bert_classification_demo_en.py
@@ -118,13 +125,14 @@ NSP-BERT
     |- utils.py
 ```
 
-| Python File                            | Task                                 | Datasets                          |
-|----------------------------------------|--------------------------------------|-----------------------------------|
-| [nsp_bert_classification.py]()         | **Single Sentence Classification**   | *EPRSTMT, TNEWS, CSLDCP, IFLYTEK* |
-| [nsp_bert_sentence_pair.py]()          | **Sentence Pair Classification**     | *OCNLI, BUSTM, CSL*               |
-| [nsp_bert_cloze_style.py]()            | **Cloze-style Task**                 | *ChID*                            |
-| [nsp_bert_coreference_resolution.py]() | **Coreference Resolution**           | *CLUEWSC*                         |
-| [nsp_bert_entity_linking.py]()         | **Entity Linking and Entity Typing** | *DuEL2.0*                         |
+| Python File                            | Task                                 | Datasets                           |
+|----------------------------------------|--------------------------------------|------------------------------------|
+| [nsp_bert_classification.py]()         | **Single Sentence Classification**   | *EPRSTMT, TNEWS, CSLDCP, IFLYTEK*  |
+|                                        |                                      | *AG’s News, DBPedia, Amazon, IMDB* |
+| [nsp_bert_sentence_pair.py]()          | **Sentence Pair Classification**     | *OCNLI, BUSTM, CSL*                |
+| [nsp_bert_cloze_style.py]()            | **Cloze-style Task**                 | *ChID*                             |
+| [nsp_bert_coreference_resolution.py]() | **Coreference Resolution**           | *CLUEWSC*                          |
+| [nsp_bert_entity_linking.py]()         | **Entity Linking and Entity Typing** | *DuEL2.0*                          |
 
 ## Baselines
 
