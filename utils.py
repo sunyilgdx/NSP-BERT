@@ -13,9 +13,9 @@ class Datasets():
         self.train_path, self.dev_path, self.test_path = "", "", ""
 
         if (dataset_name == 'eprstmt'):
-            self.train_path = r"./datasets/clue_datasets/eprstmt/train_few_all.json"
-            self.dev_path = r"./datasets/clue_datasets/eprstmt/dev_few_all.json"
-            self.test_path = r"./datasets/clue_datasets/eprstmt/test_public.json"
+            self.train_path = r"./datasets/few_clue/eprstmt/train_few_all.json"
+            self.dev_path = r"./datasets/few_clue/eprstmt/dev_few_all.json"
+            self.test_path = r"./datasets/few_clue/eprstmt/test_public.json"
             self.label_texts = ["Positive", "Negative"]
             self.text2id = {"Positive": 0, "Negative": 1}
             self.patterns = [['好评', '差评'], ['东西不错', '东西很差'], ['这次买的东西很好', '这次买的东西很差']]
@@ -31,19 +31,19 @@ class Datasets():
                              self.templates]
 
         elif (dataset_name == "csldcp"):
-            self.train_path = r"./datasets/clue_datasets/csldcp/train_few_all.json"
-            self.dev_path = r"./datasets/clue_datasets/csldcp/dev_few_all.json"
-            self.test_path = r"./datasets/clue_datasets/csldcp/test_public.json"
-            self.label_path = r"./datasets/clue_datasets/csldcp/labels_all.txt"
+            self.train_path = r"./datasets/few_clue/csldcp/train_few_all.json"
+            self.dev_path = r"./datasets/few_clue/csldcp/dev_few_all.json"
+            self.test_path = r"./datasets/few_clue/csldcp/test_public.json"
+            self.label_path = r"./datasets/few_clue/csldcp/labels_all.txt"
             self.label_texts, self.text2id = read_labels(self.label_path)
             self.templates = ["[label]", "[label]类论文", "这是一篇[label]类论文"]
             self.patterns = [[template.replace('[label]', label) for label in self.label_texts] for template in
                              self.templates]
 
         elif (dataset_name == 'iflytek'):
-            self.train_path = r"./datasets/clue_datasets/iflytek/train_few_all.json"
-            self.dev_path = r"./datasets/clue_datasets/iflytek/dev_few_all.json"
-            self.test_path = r"./datasets/clue_datasets/iflytek/test_public.json"
+            self.train_path = r"./datasets/few_clue/iflytek/train_few_all.json"
+            self.dev_path = r"./datasets/few_clue/iflytek/dev_few_all.json"
+            self.test_path = r"./datasets/few_clue/iflytek/test_public.json"
             self.label_text2label_id = {  # 中文标签对应的ID
                 "打车": 0, "美颜": 100, "影像剪辑": 101, "摄影修图": 102,
                 "相机": 103, "绘画": 104, "二手": 105, "电商": 106,
@@ -91,34 +91,34 @@ class Datasets():
                              self.templates]
 
         elif (dataset_name == "ocnli"):
-            self.train_path = r"./datasets/clue_datasets/ocnli/train_few_all.json"
-            self.dev_path = r"./datasets/clue_datasets/ocnli/dev_few_all.json"
-            self.test_path = r"./datasets/clue_datasets/ocnli/test_public.json"
+            self.train_path = r"./datasets/few_clue/ocnli/train_few_all.json"
+            self.dev_path = r"./datasets/few_clue/ocnli/dev_few_all.json"
+            self.test_path = r"./datasets/few_clue/ocnli/test_public.json"
             self.labels = [0, 1, 2]
             self.label_texts = ["entailment", "contradiction", "neutral"]
             self.label_text2label_id = {"entailment": 2, "contradiction": 0, "neutral": 1}
 
         elif (dataset_name == "bustm"):
-            self.train_path = r"./datasets/clue_datasets/bustm/train_few_all.json"
-            self.dev_path = r"./datasets/clue_datasets/bustm/dev_few_all.json"
-            self.test_path = r"./datasets/clue_datasets/bustm/test_public.json"
+            self.train_path = r"./datasets/few_clue/bustm/train_few_all.json"
+            self.dev_path = r"./datasets/few_clue/bustm/dev_few_all.json"
+            self.test_path = r"./datasets/few_clue/bustm/test_public.json"
             self.labels = [0, 1]
 
         elif (dataset_name == "chid"):
-            self.train_path = r"./datasets/clue_datasets/chid/train_few_all.json"
-            self.dev_path = r"./datasets/clue_datasets/chid/dev_few_all.json"
-            self.test_path = r"./datasets/clue_datasets/chid/test_public.json"
+            self.train_path = r"./datasets/few_clue/chid/train_few_all.json"
+            self.dev_path = r"./datasets/few_clue/chid/dev_few_all.json"
+            self.test_path = r"./datasets/few_clue/chid/test_public.json"
 
         elif (dataset_name == "csl"):
-            self.train_path = r"./datasets/clue_datasets/csl/train_few_all.json"
-            self.dev_path = r"./datasets/clue_datasets/csl/dev_few_all.json"
-            self.test_path = r"./datasets/clue_datasets/csl/test_public.json"
+            self.train_path = r"./datasets/few_clue/csl/train_few_all.json"
+            self.dev_path = r"./datasets/few_clue/csl/dev_few_all.json"
+            self.test_path = r"./datasets/few_clue/csl/test_public.json"
             self.labels = [0, 1]
 
         elif (dataset_name == "cluewsc"):
-            self.train_path = r"./datasets/clue_datasets/cluewsc/train_few_all.json"
-            self.dev_path = r"./datasets/clue_datasets/cluewsc/dev_few_all.json"
-            self.test_path = r"./datasets/clue_datasets/cluewsc/test_public.json"
+            self.train_path = r"./datasets/few_clue/cluewsc/train_few_all.json"
+            self.dev_path = r"./datasets/few_clue/cluewsc/dev_few_all.json"
+            self.test_path = r"./datasets/few_clue/cluewsc/test_public.json"
             self.labels = [0, 1]
             self.text2id = {"true": 1, "false": 0}
             self.patterns = ['其中', '上文中']
@@ -377,7 +377,6 @@ class Datasets():
                         mention2id[alia].add(subject_id)
         return kb_list, mention2id, id2data, id2type
 
-
 class Model():
 
     def __init__(self, model_name=""):
@@ -433,6 +432,16 @@ class Model():
             self.config_path = './models/uer_mixed_corpus_bert_large/bert_config.json'
             self.checkpoint_path = './models/uer_mixed_corpus_bert_large/bert_model.ckpt'
             self.dict_path = './models/uer_mixed_corpus_bert_large/vocab.txt'
+
+        elif (model_name == "albert-base-zh"):
+            self.config_path = './models/albert_base_zh/albert_config.json'
+            self.checkpoint_path = './models/albert_base_zh/model.ckpt-best'
+            self.dict_path = './models/albert_base_zh/vocab_chinese.txt'
+
+        elif (model_name == "albert-xlarge-zh"):
+            self.config_path = './models/albert_xlarge_zh/albert_config.json'
+            self.checkpoint_path = './models/albert_xlarge_zh/model.ckpt-best'
+            self.dict_path = './models/albert_xlarge_zh/vocab_chinese.txt'
 
 
 def read_labels(label_file_path):
