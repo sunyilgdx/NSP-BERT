@@ -2,9 +2,9 @@
 # -*- coding: utf-8 -*-
 # __author__ = "Sponge_sy"
 # Date: 2021/6/30
+import csv
 import json
 import random
-
 
 class Datasets():
     def __init__(self, dataset_name=""):
@@ -18,24 +18,17 @@ class Datasets():
             self.test_path = r"./datasets/clue_datasets/eprstmt/test_public.json"
             self.label_texts = ["Positive", "Negative"]
             self.text2id = {"Positive": 0, "Negative": 1}
-            self.patterns = [['好评', '差评'], ['东西不错', '东西很差'],  ['这次买的东西很好', '这次买的东西很差']]
+            self.patterns = [['好评', '差评'], ['东西不错', '东西很差'], ['这次买的东西很好', '这次买的东西很差']]
 
         elif (dataset_name == "tnews"):
-            self.patterns = [["文化", "娱乐", "体育", "财经", "房产", "汽车", "教育", "科技", "军事", "旅游", "国际", "证券", "农业", "电竞", "民生"],
-                             ["文化新闻", "娱乐新闻", "体育新闻", "财经新闻", "房产新闻", "汽车新闻", "教育新闻", "科技新闻", "军事新闻", "旅游新闻", "国际新闻",
-                              "证券新闻", "农业新闻", "电竞新闻", "民生新闻"],
-                             ["这是一则文化新闻", "这是一则娱乐新闻", "这是一则体育新闻", "这是一则财经新闻", "这是一则房产新闻", "这是一则汽车新闻", "这是一则教育新闻",
-                              "这是一则科技新闻", "这是一则军事新闻", "这是一则旅游新闻", "这是一则国际新闻", "这是一则证券新闻", "这是一则农业新闻", "这是一则电竞新闻",
-                              "这是一则民间民生故事新闻"]]
             self.train_path = r"./datasets/few_clue/tnews_new/train_few_all.json"
             self.dev_path = r"./datasets/few_clue/tnews_new/dev_few_all.json"
             self.test_path = r"./datasets/few_clue/tnews_new/test_public.json"
-            self.label_pair = {"文化": ["娱乐", "教育", "旅游", "民生"], "娱乐": ["文化", "旅游", "电竞"], "体育": ["娱乐", "国际", "电竞"],
-                               "财经": ["房产", "科技", "国际", "民生"], "房产": ["财经", "科技", "旅游"], "汽车": ["财经", "科技", "旅游"],
-                               "教育": ["文化", "科技", "国际"], "科技": ["财经", "汽车", "电竞"], "军事": ["文化", "科技", "国际"],
-                               "旅游": ["文化", "国际", "农业"], "国际": ["财经", "军事", "旅游", "民生"], "证券": ["财经", "军事", "国际"],
-                               "农业": ["文化", "财经", "旅游"], "电竞": ["娱乐", "体育", "科技"], "故事": ["文化", "娱乐", "农业"],
-                               }
+            self.label_texts = ["文化", "娱乐", "体育", "财经", "房产", "汽车", "教育", "科技", "军事", "旅游", "国际",
+                                "证券", "农业", "电竞", "民生"]
+            self.templates = ["[label]", "[label]新闻", "这是一则[label]新闻"]
+            self.patterns = [[template.replace('[label]', label) for label in self.label_texts] for template in
+                             self.templates]
 
         elif (dataset_name == "csldcp"):
             self.train_path = r"./datasets/clue_datasets/csldcp/train_few_all.json"
@@ -43,46 +36,15 @@ class Datasets():
             self.test_path = r"./datasets/clue_datasets/csldcp/test_public.json"
             self.label_path = r"./datasets/clue_datasets/csldcp/labels_all.txt"
             self.label_texts, self.text2id = read_labels(self.label_path)
-            self.patterns = [
-                ['材料科学与工程', '作物学', '口腔医学', '药学', '教育学', '水利工程', '理论经济学', '食品科学与工程', '畜牧学/兽医学', '体育学', '核科学与技术', '力学',
-                 '园艺学', '水产', '法学', '地质学/地质资源与地质工程', '石油与天然气工程', '农林经济管理', '信息与通信工程', '图书馆、情报与档案管理', '政治学', '电气工程',
-                 '海洋科学',
-                 '民族学', '航空宇航科学与技术', '化学/化学工程与技术', '哲学', '公共卫生与预防医学', '艺术学', '农业工程', '船舶与海洋工程', '计算机科学与技术', '冶金工程',
-                 '交通运输工程', '动力工程及工程热物理', '纺织科学与工程', '建筑学', '环境科学与工程', '公共管理', '数学', '物理学', '林学/林业工程', '心理学', '历史学',
-                 '工商管理',
-                 '应用经济学', '中医学/中药学', '天文学', '机械工程', '土木工程', '光学工程', '地理学', '农业资源利用', '生物学/生物科学与工程', '兵器科学与技术', '矿业工程',
-                 '大气科学', '基础医学/临床医学', '电子科学与技术', '测绘科学与技术', '控制科学与工程', '军事学', '中国语言文学', '新闻传播学', '社会学', '地球物理学',
-                 '植物保护'],
-                ['材料科学与工程类论文', '作物学类论文', '口腔医学类论文', '药学类论文', '教育学类论文', '水利工程类论文', '理论经济学类论文', '食品科学与工程类论文',
-                 '畜牧学/兽医学类论文',
-                 '体育学类论文', '核科学与技术类论文', '力学类论文', '园艺学类论文', '水产类论文', '法学类论文', '地质学/地质资源与地质工程类论文', '石油与天然气工程类论文',
-                 '农林经济管理类论文', '信息与通信工程类论文', '图书馆、情报与档案管理类论文', '政治学类论文', '电气工程类论文', '海洋科学类论文', '民族学类论文', '航空宇航科学与技术类论文',
-                 '化学/化学工程与技术类论文', '哲学类论文', '公共卫生与预防医学类论文', '艺术学类论文', '农业工程类论文', '船舶与海洋工程类论文', '计算机科学与技术类论文', '冶金工程类论文',
-                 '交通运输工程类论文', '动力工程及工程热物理类论文', '纺织科学与工程类论文', '建筑学类论文', '环境科学与工程类论文', '公共管理类论文', '数学类论文', '物理学类论文',
-                 '林学/林业工程类论文', '心理学类论文', '历史学类论文', '工商管理类论文', '应用经济学类论文', '中医学/中药学类论文', '天文学类论文', '机械工程类论文', '土木工程类论文',
-                 '光学工程类论文', '地理学类论文', '农业资源利用类论文', '生物学/生物科学与工程类论文', '兵器科学与技术类论文', '矿业工程类论文', '大气科学类论文', '基础医学/临床医学类论文',
-                 '电子科学与技术类论文', '测绘科学与技术类论文', '控制科学与工程类论文', '军事学类论文', '中国语言文学类论文', '新闻传播学类论文', '社会学类论文', '地球物理学类论文',
-                 '植物保护类论文'],
-                ['这是一篇材料科学与工程类论文', '这是一篇作物学类论文', '这是一篇口腔医学类论文', '这是一篇药学类论文', '这是一篇教育学类论文', '这是一篇水利工程类论文',
-                 '这是一篇理论经济学类论文',
-                 '这是一篇食品科学与工程类论文', '这是一篇畜牧学/兽医学类论文', '这是一篇体育学类论文', '这是一篇核科学与技术类论文', '这是一篇力学类论文', '这是一篇园艺学类论文',
-                 '这是一篇水产类论文',
-                 '这是一篇法学类论文', '这是一篇地质学/地质资源与地质工程类论文', '这是一篇石油与天然气工程类论文', '这是一篇农林经济管理类论文', '这是一篇信息与通信工程类论文',
-                 '这是一篇图书馆、情报与档案管理类论文', '这是一篇政治学类论文', '这是一篇电气工程类论文', '这是一篇海洋科学类论文', '这是一篇民族学类论文', '这是一篇航空宇航科学与技术类论文',
-                 '这是一篇化学/化学工程与技术类论文', '这是一篇哲学类论文', '这是一篇公共卫生与预防医学类论文', '这是一篇艺术学类论文', '这是一篇农业工程类论文', '这是一篇船舶与海洋工程类论文',
-                 '这是一篇计算机科学与技术类论文', '这是一篇冶金工程类论文', '这是一篇交通运输工程类论文', '这是一篇动力工程及工程热物理类论文', '这是一篇纺织科学与工程类论文', '这是一篇建筑学类论文',
-                 '这是一篇环境科学与工程类论文', '这是一篇公共管理类论文', '这是一篇数学类论文', '这是一篇物理学类论文', '这是一篇林学/林业工程类论文', '这是一篇心理学类论文',
-                 '这是一篇历史学类论文',
-                 '这是一篇工商管理类论文', '这是一篇应用经济学类论文', '这是一篇中医学/中药学类论文', '这是一篇天文学类论文', '这是一篇机械工程类论文', '这是一篇土木工程类论文',
-                 '这是一篇光学工程类论文', '这是一篇地理学类论文', '这是一篇农业资源利用类论文', '这是一篇生物学/生物科学与工程类论文', '这是一篇兵器科学与技术类论文', '这是一篇矿业工程类论文',
-                 '这是一篇大气科学类论文', '这是一篇基础医学/临床医学类论文', '这是一篇电子科学与技术类论文', '这是一篇测绘科学与技术类论文', '这是一篇控制科学与工程类论文', '这是一篇军事学类论文',
-                 '这是一篇中国语言文学类论文', '这是一篇新闻传播学类论文', '这是一篇社会学类论文', '这是一篇地球物理学类论文', '这是一篇植物保护类论文']]
+            self.templates = ["[label]", "[label]类论文", "这是一篇[label]类论文"]
+            self.patterns = [[template.replace('[label]', label) for label in self.label_texts] for template in
+                             self.templates]
 
         elif (dataset_name == 'iflytek'):
             self.train_path = r"./datasets/clue_datasets/iflytek/train_few_all.json"
             self.dev_path = r"./datasets/clue_datasets/iflytek/dev_few_all.json"
             self.test_path = r"./datasets/clue_datasets/iflytek/test_public.json"
-            self.label_text2label_id = labels = {  # 中文标签对应的ID
+            self.label_text2label_id = {  # 中文标签对应的ID
                 "打车": 0, "美颜": 100, "影像剪辑": 101, "摄影修图": 102,
                 "相机": 103, "绘画": 104, "二手": 105, "电商": 106,
                 "团购": 107, "外卖": 108, "电影票务": 109, "社区服务": 10,
@@ -124,46 +86,9 @@ class Datasets():
                                 '医疗服务', '减肥瘦身', '美妆美业', '菜谱', '餐饮店', '体育咨讯', '运动健身', '支付', '保险', '股票', '借贷', '理财', '彩票',
                                 '记账', '银行', '美颜', '影像剪辑', '摄影修图', '相机', '绘画', '二手', '电商', '团购', '外卖', '电影票务', '社区超市',
                                 '购物咨询', '笔记', '办公', '日程管理', '女性', '经营', '收款', '其他']
-
-            self.patterns = [
-                ['打车', '地图导航', '免费WIFI', '租车', '同城服务', '快递物流', '婚庆', '家政', '公共交通', '政务', '社区服务', '薅羊毛', '魔幻', '仙侠',
-                 '卡牌', '飞行空战', '射击游戏', '休闲益智', '动作类', '体育竞技', '棋牌中心', '经营养成', '策略', 'MOBA', '辅助工具', '约会社交', '即时通讯',
-                 '工作社交', '论坛圈子', '婚恋社交', '情侣社交', '社交工具', '生活社交', '微博博客', '新闻', '漫画', '小说', '技术', '教辅', '问答交流', '搞笑',
-                 '杂志', '百科', '影视娱乐', '求职', '兼职', '视频', '短视频', '音乐', '直播', '电台', 'K歌', '成人', '中小学', '职考', '公务员', '英语',
-                 '视频教育', '高等教育', '成人教育', '艺术', '语言(非英语)', '旅游资讯', '综合预定', '民航', '铁路', '酒店', '行程管理', '民宿短租', '出国', '工具',
-                 '亲子儿童', '母婴', '驾校', '违章', '汽车咨询', '汽车交易', '日常养车', '行车辅助', '租房', '买房', '装修家居', '电子产品', '问诊挂号', '养生保健',
-                 '医疗服务', '减肥瘦身', '美妆美业', '菜谱', '餐饮店', '体育咨讯', '运动健身', '支付', '保险', '股票', '借贷', '理财', '彩票', '记账', '银行',
-                 '美颜', '影像剪辑', '摄影修图', '相机', '绘画', '二手', '电商', '团购', '外卖', '电影票务', '社区超市', '购物咨询', '笔记', '办公', '日程管理',
-                 '女性', '经营', '收款', '其他'],
-                ['打车类软件', '地图导航类软件', '免费WIFI类软件', '租车类软件', '同城服务类软件', '快递物流类软件', '婚庆类软件', '家政类软件', '公共交通类软件', '政务类软件',
-                 '社区服务类软件', '薅羊毛类软件', '魔幻类软件', '仙侠类软件', '卡牌类软件', '飞行空战类软件', '射击游戏类软件', '休闲益智类软件', '动作类类软件', '体育竞技类软件',
-                 '棋牌中心类软件', '经营养成类软件', '策略类软件', 'MOBA类软件', '辅助工具类软件', '约会社交类软件', '即时通讯类软件', '工作社交类软件', '论坛圈子类软件',
-                 '婚恋社交类软件', '情侣社交类软件', '社交工具类软件', '生活社交类软件', '微博博客类软件', '新闻类软件', '漫画类软件', '小说类软件', '技术类软件', '教辅类软件',
-                 '问答交流类软件', '搞笑类软件', '杂志类软件', '百科类软件', '影视娱乐类软件', '求职类软件', '兼职类软件', '视频类软件', '短视频类软件', '音乐类软件', '直播类软件',
-                 '电台类软件', 'K歌类软件', '成人类软件', '中小学类软件', '职考类软件', '公务员类软件', '英语类软件', '视频教育类软件', '高等教育类软件', '成人教育类软件',
-                 '艺术类软件', '语言(非英语)类软件', '旅游资讯类软件', '综合预定类软件', '民航类软件', '铁路类软件', '酒店类软件', '行程管理类软件', '民宿短租类软件', '出国类软件',
-                 '工具类软件', '亲子儿童类软件', '母婴类软件', '驾校类软件', '违章类软件', '汽车咨询类软件', '汽车交易类软件', '日常养车类软件', '行车辅助类软件', '租房类软件',
-                 '买房类软件', '装修家居类软件', '电子产品类软件', '问诊挂号类软件', '养生保健类软件', '医疗服务类软件', '减肥瘦身类软件', '美妆美业类软件', '菜谱类软件',
-                 '餐饮店类软件', '体育咨讯类软件', '运动健身类软件', '支付类软件', '保险类软件', '股票类软件', '借贷类软件', '理财类软件', '彩票类软件', '记账类软件', '银行类软件',
-                 '美颜类软件', '影像剪辑类软件', '摄影修图类软件', '相机类软件', '绘画类软件', '二手类软件', '电商类软件', '团购类软件', '外卖类软件', '电影票务类软件',
-                 '社区超市类软件', '购物咨询类软件', '笔记类软件', '办公类软件', '日程管理类软件', '女性类软件', '经营类软件', '收款类软件', '其他类软件'],
-                ['这是一款打车类软件', '这是一款地图导航类软件', '这是一款免费WIFI类软件', '这是一款租车类软件', '这是一款同城服务类软件', '这是一款快递物流类软件', '这是一款婚庆类软件',
-                 '这是一款家政类软件', '这是一款公共交通类软件', '这是一款政务类软件', '这是一款社区服务类软件', '这是一款薅羊毛类软件', '这是一款魔幻类软件', '这是一款仙侠类软件',
-                 '这是一款卡牌类软件', '这是一款飞行空战类软件', '这是一款射击游戏类软件', '这是一款休闲益智类软件', '这是一款动作类类软件', '这是一款体育竞技类软件', '这是一款棋牌中心类软件',
-                 '这是一款经营养成类软件', '这是一款策略类软件', '这是一款MOBA类软件', '这是一款辅助工具类软件', '这是一款约会社交类软件', '这是一款即时通讯类软件', '这是一款工作社交类软件',
-                 '这是一款论坛圈子类软件', '这是一款婚恋社交类软件', '这是一款情侣社交类软件', '这是一款社交工具类软件', '这是一款生活社交类软件', '这是一款微博博客类软件', '这是一款新闻类软件',
-                 '这是一款漫画类软件', '这是一款小说类软件', '这是一款技术类软件', '这是一款教辅类软件', '这是一款问答交流类软件', '这是一款搞笑类软件', '这是一款杂志类软件',
-                 '这是一款百科类软件', '这是一款影视娱乐类软件', '这是一款求职类软件', '这是一款兼职类软件', '这是一款视频类软件', '这是一款短视频类软件', '这是一款音乐类软件',
-                 '这是一款直播类软件', '这是一款电台类软件', '这是一款K歌类软件', '这是一款成人类软件', '这是一款中小学类软件', '这是一款职考类软件', '这是一款公务员类软件',
-                 '这是一款英语类软件', '这是一款视频教育类软件', '这是一款高等教育类软件', '这是一款成人教育类软件', '这是一款艺术类软件', '这是一款语言(非英语)类软件', '这是一款旅游资讯类软件',
-                 '这是一款综合预定类软件', '这是一款民航类软件', '这是一款铁路类软件', '这是一款酒店类软件', '这是一款行程管理类软件', '这是一款民宿短租类软件', '这是一款出国类软件',
-                 '这是一款工具类软件', '这是一款亲子儿童类软件', '这是一款母婴类软件', '这是一款驾校类软件', '这是一款违章类软件', '这是一款汽车咨询类软件', '这是一款汽车交易类软件',
-                 '这是一款日常养车类软件', '这是一款行车辅助类软件', '这是一款租房类软件', '这是一款买房类软件', '这是一款装修家居类软件', '这是一款电子产品类软件', '这是一款问诊挂号类软件',
-                 '这是一款养生保健类软件', '这是一款医疗服务类软件', '这是一款减肥瘦身类软件', '这是一款美妆美业类软件', '这是一款菜谱类软件', '这是一款餐饮店类软件', '这是一款体育咨讯类软件',
-                 '这是一款运动健身类软件', '这是一款支付类软件', '这是一款保险类软件', '这是一款股票类软件', '这是一款借贷类软件', '这是一款理财类软件', '这是一款彩票类软件',
-                 '这是一款记账类软件', '这是一款银行类软件', '这是一款美颜类软件', '这是一款影像剪辑类软件', '这是一款摄影修图类软件', '这是一款相机类软件', '这是一款绘画类软件',
-                 '这是一款二手类软件', '这是一款电商类软件', '这是一款团购类软件', '这是一款外卖类软件', '这是一款电影票务类软件', '这是一款社区超市类软件', '这是一款购物咨询类软件',
-                 '这是一款笔记类软件', '这是一款办公类软件', '这是一款日程管理类软件', '这是一款女性类软件', '这是一款经营类软件', '这是一款收款类软件', '这是一款其他类软件']]
+            self.templates = ["[label]", "[label]类软件", "这是一款[label]类软件"]
+            self.patterns = [[template.replace('[label]', label) for label in self.label_texts] for template in
+                             self.templates]
 
         elif (dataset_name == "ocnli"):
             self.train_path = r"./datasets/clue_datasets/ocnli/train_few_all.json"
@@ -217,6 +142,47 @@ class Datasets():
                               'VirtualThings',
                               'Diagnosis&Treatment', 'Other']
 
+        elif (dataset_name == "AGNews"):
+            self.train_path = r"./datasets/enEval/agnews/train.csv"
+            self.dev_path = r"./datasets//enEval/agnews/test.csv"
+            self.test_path = r"./datasets//enEval/agnews/test.csv"
+            self.label_texts = ["political", "sports", "business", "technology"]
+            self.templates = ["[label]", "This is a [label] news", "The above news is about [label]"]
+            self.patterns = [[template.replace('[label]', label) for label in self.label_texts] for template in
+                             self.templates]
+
+        elif (dataset_name == "DBPedia"):
+            self.train_path = r"./datasets/enEval/dbpedia/train.txt"
+            self.dev_path = r"./datasets//enEval/dbpedia/test.txt"
+            self.test_path = r"./datasets//enEval/dbpedia/test.txt"
+            self.label_texts = ["company", "school university", "artist", "athlete", "politics", "transportation",
+                                "building",
+                                "river mountain lake", "village", "animal", "plant tree", "album", "film",
+                                "book publication"]
+            self.templates = ["[label]", "This is about [label]", "It's a [label]"]
+            self.patterns = [[template.replace('[label]', label) for label in self.label_texts] for template in
+                             self.templates]
+
+        elif (dataset_name == "IMDB"):
+            self.train_path = r"./datasets/enEval/imdb/train.txt"
+            self.dev_path = r"./datasets/enEval/imdb/test.txt"
+            self.test_path = r"./datasets/enEval/imdb/test.txt"
+            self.label_texts = ['bad', 'good']
+            self.templates = ["It is [label]", "This movie is [label]",
+                              "After watching this movie, I think it's [label]"]
+            self.patterns = [[template.replace('[label]', label) for label in self.label_texts] for template in
+                             self.templates]
+
+        elif (dataset_name == "Amazon"):
+            self.train_path = r"./datasets/enEval/amazon/train.txt"
+            self.dev_path = r"./datasets/enEval/amazon/test.txt"
+            self.test_path = r"./datasets/enEval/amazon/test.txt"
+            self.label_texts = ['bad', 'good']
+            self.templates = ["It is [label]", "All in all, it is [label]",
+                              "I think it is [label]"]
+            self.patterns = [[template.replace('[label]', label) for label in self.label_texts] for template in
+                             self.templates]
+
     def load_data(self, filename, sample_num=-1, is_train=False, is_shuffle=False):
         D = []
 
@@ -234,7 +200,7 @@ class Datasets():
                 for l in f:
                     text = json.loads(l)['text']
                     label = json.loads(l)['label']
-                    D.append((text , int(label)))
+                    D.append((text, int(label)))
 
         elif (self.dataset_name == "csldcp"):
             text2id = self.text2id
@@ -300,6 +266,72 @@ class Datasets():
                     label = self.text2id[label]
                     D.append((text, int(label), span1_text, span2_text, span1_index, span2_index))
 
+        elif (self.dataset_name == "AGNews"):
+            with open(filename, encoding='utf-8') as f:
+                reader = csv.reader(f, delimiter=',')
+                for idx, row in enumerate(reader):
+                    label, headline, body = row
+                    text_a = headline.replace('\\', ' ')
+                    text_b = body.replace('\\', ' ')
+                    D.append((text_a + ". " + text_b, int(label) - 1))
+                    # D.append((text_b, int(label) - 1))
+
+        elif (self.dataset_name == "DBPedia"):
+            label_filename = ""
+            if ('test' in filename):
+                label_filename = filename.replace('test', 'test_labels')
+            if ('train' in filename):
+                label_filename = filename.replace('train', 'train_labels')
+            lines = []
+            entities = []
+            with open(filename, encoding='utf-8') as f:
+                for line in f.readlines():
+                    lines.append(line)
+                    entity = line.split('.')[0]
+                    entities.append(entity)
+            labels = []
+            with open(label_filename, encoding='utf-8') as label_f:
+                for label in label_f.readlines():
+                    labels.append(label)
+            for line, entity, label in zip(lines, entities, labels):
+                text = "{} The {} is a".format(line, entity)
+                D.append((text, int(label)))
+            print("We recommend using template0 with the suffix.")
+
+        elif (self.dataset_name == "IMDB"):
+            label_filename = ""
+            if ('test' in filename):
+                label_filename = filename.replace('test', 'test_labels')
+            if ('train' in filename):
+                label_filename = filename.replace('train', 'train_labels')
+            lines = []
+            with open(filename, encoding='utf-8') as f:
+                for line in f.readlines():
+                    lines.append(line)
+            labels = []
+            with open(label_filename, encoding='utf-8') as label_f:
+                for label in label_f.readlines():
+                    labels.append(label)
+            for line, label in zip(lines, labels):
+                D.append((line, int(label)))
+
+        elif (self.dataset_name == "Amazon"):
+            label_filename = ""
+            if ('test' in filename):
+                label_filename = filename.replace('test', 'test_labels')
+            if ('train' in filename):
+                label_filename = filename.replace('train', 'train_labels')
+            lines = []
+            with open(filename, encoding='utf-8') as f:
+                for line in f.readlines():
+                    lines.append(line)
+            labels = []
+            with open(label_filename, encoding='utf-8') as label_f:
+                for label in label_f.readlines():
+                    labels.append(label)
+            for line, label in zip(lines, labels):
+                D.append((line, int(label)))
+
         elif (self.dataset_name == "duel2.0"):
             with open(filename, encoding='utf-8')as f:
                 for l in f:
@@ -307,6 +339,7 @@ class Datasets():
 
         # Shuffle the dataset.
         if (is_shuffle):
+            random.seed(1)
             random.shuffle(D)
 
         # Set the number of samples.
@@ -344,6 +377,7 @@ class Datasets():
                         mention2id[alia].add(subject_id)
         return kb_list, mention2id, id2data, id2type
 
+
 class Model():
 
     def __init__(self, model_name=""):
@@ -359,6 +393,11 @@ class Model():
             self.config_path = './models/uncased_L-8_H-512_A-8/bert_config.json'
             self.checkpoint_path = './models/uncased_L-8_H-512_A-8/bert_model.ckpt'
             self.dict_path = './models/uncased_L-8_H-512_A-8/vocab.txt'
+
+        if (model_name == 'google-bert-wwm-large'):
+            self.config_path = './models/wwm_uncased_L-24_H-1024_A-16/bert_config.json'
+            self.checkpoint_path = './models/wwm_uncased_L-24_H-1024_A-16/bert_model.ckpt'
+            self.dict_path = './models/wwm_uncased_L-24_H-1024_A-16/vocab.txt'
 
         elif (model_name == 'google-bert-zh'):
             self.config_path = './models/chinese_L-12_H-768_A-12/bert_config.json'
@@ -394,6 +433,7 @@ class Model():
             self.config_path = './models/uer_mixed_corpus_bert_large/bert_config.json'
             self.checkpoint_path = './models/uer_mixed_corpus_bert_large/bert_model.ckpt'
             self.dict_path = './models/uer_mixed_corpus_bert_large/vocab.txt'
+
 
 def read_labels(label_file_path):
     labels_text = []

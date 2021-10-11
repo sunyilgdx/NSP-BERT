@@ -195,7 +195,8 @@ if __name__ == "__main__":
 
     # Choose a model----------------------------------------------------------------------
     # Recommend to use 'uer-mixed-bert-base'
-    # model_names = ['google-bert-zh', 'hfl-bert-wwm', 'hfl-bert-wwm-ext',
+    # model_names = ['google-bert', 'google-bert-small', 'google-bert-zh',
+    #                'hfl-bert-wwm', 'hfl-bert-wwm-ext',
     #                'uer-mixed-bert-tiny', 'uer-mixed-bert-small',
     #                'uer-mixed-bert-base', 'uer-mixed-bert-large']
     model_name = 'uer-mixed-bert-base'
