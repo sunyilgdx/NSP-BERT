@@ -6,6 +6,9 @@ This is the code of our paper **[NSP-BERT: A Prompt-based Zero-Shot Learner Thro
 
 On the [FewCLUE benchmark](https://github.com/CLUEbenchmark/FewCLUE), our NSP-BERT outperforms other zero-shot methods (GPT-1-zero and PET-zero) on most of these tasks and comes close to the few-shot methods. We hope NSP-BERT can be an unsupervised tool that can assist other language tasks or models.
 
+## News
+
+2021/10/11 We uploaded the code on several English classification task datasets, **AG’s News, DBPedia, Amazon and IMDB**. Thanks to [Shengding Hu](https://github.com/ShengdingHu) and his [KnowledgeablePromptTuning](https://github.com/ShengdingHu/KnowledgeablePromptTuning).
 
 ## Guide
 | Section | Description |
