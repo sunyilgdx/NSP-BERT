@@ -8,7 +8,8 @@ On the [FewCLUE benchmark](https://github.com/CLUEbenchmark/FewCLUE), our NSP-BE
 
 ## News
 
-2021/10/11 We uploaded the code on several English classification task datasets, **AG’s News, DBPedia, Amazon and IMDB**. Thanks to [Shengding Hu](https://github.com/ShengdingHu) and his [KnowledgeablePromptTuning](https://github.com/ShengdingHu/KnowledgeablePromptTuning).
+2021/10/11 We uploaded the code on several English classification task datasets, **AG’s News, DBPedia, Amazon and IMDB**. The Acc. of NSP-BERT on those datasets are about 81.8, 70.9, 71.9 and 70.7 (We tested about 1K samples).
+Thanks to [Shengding Hu](https://github.com/ShengdingHu) and his [KnowledgeablePromptTuning](https://github.com/ShengdingHu/KnowledgeablePromptTuning).
 
 ## Guide
 | Section | Description |
