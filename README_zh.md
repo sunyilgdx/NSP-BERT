@@ -6,6 +6,10 @@
 
 在[FewCLUE benchmark](https://github.com/CLUEbenchmark/FewCLUE)评测集上的部分任务中, 我们的 NSP-BERT性能远超其他 zero-shot 方法 (GPT-1-zero and PET-zero). 我们希望 NSP-BERT 能够成为一个可以辅助其他语言模型的一个无监督工具.
 
+## 新闻
+
+2021/10/11 我们上传了几个英文分类任务的代码，**AG’s News, DBPedia, Amazon and IMDB**，十分感谢[Shengding Hu](https://github.com/ShengdingHu)和他的[KnowledgeablePromptTuning](https://github.com/ShengdingHu/KnowledgeablePromptTuning).
+
 
 ## 目录
 | 章节 | 描述 |
@@ -51,6 +55,7 @@ tensorflow-gpu 1.15.0
 |--------------------|-------------------------------------------------------------|
 | FewCLUE            | https://github.com/CLUEbenchmark/FewCLUE/tree/main/datasets |
 | DuEL2.0 (CCKS2020) | https://aistudio.baidu.com/aistudio/competition/detail/83   |
+| enEval             | https://github.com/ShengdingHu/KnowledgeablePromptTuning    |
 
 将数据集放在 [NSP-BERT/datasets/]()下.
 
@@ -102,6 +107,11 @@ NSP-BERT
         |- DuEL 2.0
            |- dev.json
            |- kb.json
+        |- enEval
+           |- agnews
+           |- amazon
+           |- dbpedia
+           |- imdb
     |- demos
         |- nsp_bert_classification_demo.py
         |- nsp_bert_classification_demo_en.py
@@ -119,13 +129,14 @@ NSP-BERT
     |- utils.py
 ```
 
-| Python 文件                            | 任务                                 | 数据集                            |
-|----------------------------------------|--------------------------------------|-----------------------------------|
-| [nsp_bert_classification.py]()         | **Single Sentence Classification**   | *EPRSTMT, TNEWS, CSLDCP, IFLYTEK* |
-| [nsp_bert_sentence_pair.py]()          | **Sentence Pair Classification**     | *OCNLI, BUSTM, CSL*               |
-| [nsp_bert_cloze_style.py]()            | **Cloze-style Task**                 | *ChID*                            |
-| [nsp_bert_coreference_resolution.py]() | **Coreference Resolution**           | *CLUEWSC*                         |
-| [nsp_bert_entity_linking.py]()         | **Entity Linking and Entity Typing** | *DuEL2.0*                         |
+| Python 文件                            | 任务                                 | 数据集                             |
+|----------------------------------------|--------------------------------------|------------------------------------|
+| [nsp_bert_classification.py]()         | **Single Sentence Classification**   | *EPRSTMT, TNEWS, CSLDCP, IFLYTEK*  |
+|                                        |                                      | *AG’s News, DBPedia, Amazon, IMDB* |
+| [nsp_bert_sentence_pair.py]()          | **Sentence Pair Classification**     | *OCNLI, BUSTM, CSL*                |
+| [nsp_bert_cloze_style.py]()            | **Cloze-style Task**                 | *ChID*                             |
+| [nsp_bert_coreference_resolution.py]() | **Coreference Resolution**           | *CLUEWSC*                          |
+| [nsp_bert_entity_linking.py]()         | **Entity Linking and Entity Typing** | *DuEL2.0*                          |
 
 ## 基线模型
 
