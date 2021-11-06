@@ -2,8 +2,6 @@
 # -*- coding: utf-8 -*-
 # __author__ = "Sponge_sy"
 # Date: 2021/6/30
-
-
 from tqdm import tqdm
 from sklearn import metrics
 from scipy.stats import pearsonr, spearmanr

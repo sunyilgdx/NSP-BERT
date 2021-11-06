@@ -348,8 +348,6 @@ class Datasets():
             self.metric = 'Pear'
             self.labels = [0, 1, 2, 3, 4, 5]
 
-
-
     def load_data(self, filename, sample_num=-1, is_train=False, is_shuffle=False):
         D = []
 

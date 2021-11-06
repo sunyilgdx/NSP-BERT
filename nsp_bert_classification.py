@@ -36,6 +36,7 @@ class data_generator(DataGenerator):
                 yield [batch_token_ids, batch_segment_ids, batch_output_ids], None
                 batch_token_ids, batch_segment_ids, batch_output_ids = [], [], []
 
+
 def evaluate(data_generator_list, data, note=""):
     print("\n*******************Start to Zero-Shot predict on 【{}】*******************".format(note), flush=True)
     patterns_logits = [[] for _ in patterns]
@@ -66,6 +67,7 @@ def evaluate(data_generator_list, data, note=""):
         acc = metrics.accuracy_score(trues, preds, normalize=True, sample_weight=None)
         print("Acc.:\t{:.4f}".format(acc), flush=True)
         return acc
+
 
 if __name__ == "__main__":
 

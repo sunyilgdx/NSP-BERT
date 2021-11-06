@@ -29,7 +29,7 @@ MODEL_NAME = {
     'MR': 'google-bert-cased',
     'CR': 'google-bert-cased',
     'MPQA': 'google-bert-cased',
-    'Subj' : 'google-bert-cased',
+    'Subj': 'google-bert-cased',
     'TREC': 'google-bert-cased',
     'SNLI': 'google-bert-cased-wwm-large',
 
@@ -41,9 +41,9 @@ IS_PRE = {
     'tnews': True,
     'csldcp': True,
     'iflytek': True,
-    'bustm':True,
-    'ocnli':True,
-    'csl':False,
+    'bustm': True,
+    'ocnli': True,
+    'csl': False,
     # English datasets in KP
     'AGNews': True,
     'DBPedia': False,
@@ -64,7 +64,7 @@ IS_PRE = {
     'MR': True,
     'CR': True,
     'MPQA': True,
-    'Subj' : True,
+    'Subj': True,
     'TREC': True,
 }
 
@@ -87,6 +87,6 @@ PATTERN_INDEX = {
     'MR': -1,
     'CR': -1,
     'MPQA': -1,
-    'Subj' : -1,
+    'Subj': -1,
     'TREC': -1,
 }
