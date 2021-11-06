@@ -6,6 +6,7 @@ import csv
 import json
 import random
 
+
 class Datasets():
     def __init__(self, dataset_name=""):
         self.dataset_name = dataset_name
@@ -16,6 +17,7 @@ class Datasets():
             self.train_path = r"./datasets/few_clue/eprstmt/train_few_all.json"
             self.dev_path = r"./datasets/few_clue/eprstmt/dev_few_all.json"
             self.test_path = r"./datasets/few_clue/eprstmt/test_public.json"
+            self.metric = 'Acc'
             self.label_texts = ["Positive", "Negative"]
             self.text2id = {"Positive": 0, "Negative": 1}
             self.patterns = [['好评', '差评'], ['东西不错', '东西很差'], ['这次买的东西很好', '这次买的东西很差']]
@@ -24,6 +26,7 @@ class Datasets():
             self.train_path = r"./datasets/few_clue/tnews_new/train_few_all.json"
             self.dev_path = r"./datasets/few_clue/tnews_new/dev_few_all.json"
             self.test_path = r"./datasets/few_clue/tnews_new/test_public.json"
+            self.metric = 'Acc'
             self.label_texts = ["文化", "娱乐", "体育", "财经", "房产", "汽车", "教育", "科技", "军事", "旅游", "国际",
                                 "证券", "农业", "电竞", "民生"]
             self.templates = ["[label]", "[label]新闻", "这是一则[label]新闻"]
@@ -35,6 +38,7 @@ class Datasets():
             self.dev_path = r"./datasets/few_clue/csldcp/dev_few_all.json"
             self.test_path = r"./datasets/few_clue/csldcp/test_public.json"
             self.label_path = r"./datasets/few_clue/csldcp/labels_all.txt"
+            self.metric = 'Acc'
             self.label_texts, self.text2id = read_labels(self.label_path)
             self.templates = ["[label]", "[label]类论文", "这是一篇[label]类论文"]
             self.patterns = [[template.replace('[label]', label) for label in self.label_texts] for template in
@@ -44,6 +48,7 @@ class Datasets():
             self.train_path = r"./datasets/few_clue/iflytek/train_few_all.json"
             self.dev_path = r"./datasets/few_clue/iflytek/dev_few_all.json"
             self.test_path = r"./datasets/few_clue/iflytek/test_public.json"
+            self.metric = 'Acc'
             self.label_text2label_id = {  # 中文标签对应的ID
                 "打车": 0, "美颜": 100, "影像剪辑": 101, "摄影修图": 102,
                 "相机": 103, "绘画": 104, "二手": 105, "电商": 106,
@@ -94,6 +99,7 @@ class Datasets():
             self.train_path = r"./datasets/few_clue/ocnli/train_few_all.json"
             self.dev_path = r"./datasets/few_clue/ocnli/dev_few_all.json"
             self.test_path = r"./datasets/few_clue/ocnli/test_public.json"
+            self.metric = 'Acc'
             self.labels = [0, 1, 2]
             self.label_texts = ["entailment", "contradiction", "neutral"]
             self.label_text2label_id = {"entailment": 2, "contradiction": 0, "neutral": 1}
@@ -102,23 +108,27 @@ class Datasets():
             self.train_path = r"./datasets/few_clue/bustm/train_few_all.json"
             self.dev_path = r"./datasets/few_clue/bustm/dev_few_all.json"
             self.test_path = r"./datasets/few_clue/bustm/test_public.json"
+            self.metric = 'Acc'
             self.labels = [0, 1]
 
         elif (dataset_name == "chid"):
             self.train_path = r"./datasets/few_clue/chid/train_few_all.json"
             self.dev_path = r"./datasets/few_clue/chid/dev_few_all.json"
             self.test_path = r"./datasets/few_clue/chid/test_public.json"
+            self.metric = 'Acc'
 
         elif (dataset_name == "csl"):
             self.train_path = r"./datasets/few_clue/csl/train_few_all.json"
             self.dev_path = r"./datasets/few_clue/csl/dev_few_all.json"
             self.test_path = r"./datasets/few_clue/csl/test_public.json"
+            self.metric = 'Acc'
             self.labels = [0, 1]
 
         elif (dataset_name == "cluewsc"):
             self.train_path = r"./datasets/few_clue/cluewsc/train_few_all.json"
             self.dev_path = r"./datasets/few_clue/cluewsc/dev_few_all.json"
             self.test_path = r"./datasets/few_clue/cluewsc/test_public.json"
+            self.metric = 'Acc'
             self.labels = [0, 1]
             self.text2id = {"true": 1, "false": 0}
             self.patterns = ['其中', '上文中']
@@ -128,6 +138,7 @@ class Datasets():
             self.dev_path = r"./datasets/DuEL 2.0/dev.json"
             self.test_path = r"./datasets/DuEL 2.0/test.json"
             self.kb_path = r"./datasets/DuEL 2.0/kb.json"
+            self.metric = 'Acc'
             self.type_en2zh = {'Event': '事件活动', 'Person': '人物', 'Work': '作品', 'Location': '区域场所',
                                'Time&Calendar': '时间历法', 'Brand': '品牌', 'Natural&Geography': '自然地理',
                                'Game': '游戏', 'Biological': '生物', 'Medicine': '药物', 'Food': '食物',
@@ -146,6 +157,7 @@ class Datasets():
             self.train_path = r"./datasets/enEval/agnews/train.csv"
             self.dev_path = r"./datasets//enEval/agnews/test.csv"
             self.test_path = r"./datasets//enEval/agnews/test.csv"
+            self.metric = 'Acc'
             self.label_texts = ["political", "sports", "business", "technology"]
             self.templates = ["[label]", "This is a [label] news", "The above news is about [label]"]
             self.patterns = [[template.replace('[label]', label) for label in self.label_texts] for template in
@@ -155,6 +167,7 @@ class Datasets():
             self.train_path = r"./datasets/enEval/dbpedia/train.txt"
             self.dev_path = r"./datasets//enEval/dbpedia/test.txt"
             self.test_path = r"./datasets//enEval/dbpedia/test.txt"
+            self.metric = 'Acc'
             self.label_texts = ["company", "school university", "artist", "athlete", "politics", "transportation",
                                 "building",
                                 "river mountain lake", "village", "animal", "plant tree", "album", "film",
@@ -167,6 +180,7 @@ class Datasets():
             self.train_path = r"./datasets/enEval/imdb/train.txt"
             self.dev_path = r"./datasets/enEval/imdb/test.txt"
             self.test_path = r"./datasets/enEval/imdb/test.txt"
+            self.metric = 'Acc'
             self.label_texts = ['bad', 'good']
             self.templates = ["It is [label]", "This movie is [label]",
                               "After watching this movie, I think it's [label]"]
@@ -177,11 +191,164 @@ class Datasets():
             self.train_path = r"./datasets/enEval/amazon/train.txt"
             self.dev_path = r"./datasets/enEval/amazon/test.txt"
             self.test_path = r"./datasets/enEval/amazon/test.txt"
+            self.metric = 'Acc'
             self.label_texts = ['bad', 'good']
             self.templates = ["It is [label]", "All in all, it is [label]",
                               "I think it is [label]"]
             self.patterns = [[template.replace('[label]', label) for label in self.label_texts] for template in
                              self.templates]
+
+        elif (dataset_name == 'SST-2'):
+            self.train_path = r"./datasets/GLUE/SST-2/train.tsv"
+            self.dev_path = r"./datasets/GLUE/SST-2/dev.tsv"
+            self.test_path = r"./datasets/GLUE/SST-2/train.tsv"
+            self.metric = 'Acc'
+            self.label_texts = ["terrible", "great"]
+            self.templates = ["[label]", "It was [label]", "That is [label]"]
+            self.patterns = [[template.replace('[label]', label) for label in self.label_texts] for template in
+                             self.templates]
+
+        elif (dataset_name == 'CoLA'):
+            self.train_path = r"./datasets/GLUE/CoLA/train.tsv"
+            self.dev_path = r"./datasets/GLUE/CoLA/dev.tsv"
+            self.test_path = r"./datasets/GLUE/CoLA/train.tsv"
+            self.metric = 'Matthews'
+            self.label_texts = ["wrong", "right"]
+            self.templates = ["[label]", "That's [label]"]
+            self.patterns = [[template.replace('[label]', label) for label in self.label_texts] for template in
+                             self.templates]
+
+        elif (dataset_name == 'MR'):
+            self.train_path = r"./datasets/others/MR/train.csv"
+            self.dev_path = r"./datasets/others/MR/test.csv"
+            self.test_path = r"./datasets/others/MR/train.csv"
+            self.metric = 'Acc'
+            self.label_texts = ["terrible", "great"]
+            self.templates = ["It was [label]", "It's' [label]", "A [label] piece of work"]
+            self.patterns = [[template.replace('[label]', label) for label in self.label_texts] for template in
+                             self.templates]
+
+        elif (dataset_name == 'CR'):
+            self.train_path = r"./datasets/others/CR/train.csv"
+            self.dev_path = r"./datasets/others/CR/test.csv"
+            self.test_path = r"./datasets/others/CR/train.csv"
+            self.metric = 'Acc'
+            self.label_texts = ["terrible", "great"]
+            self.templates = ["It was [label]", "It's' [label]", "A [label] piece of work"]
+            self.patterns = [[template.replace('[label]', label) for label in self.label_texts] for template in
+                             self.templates]
+
+        elif (dataset_name == 'MPQA'):
+            self.train_path = r"./datasets/others/MPQA/train.csv"
+            self.dev_path = r"./datasets/others/MPQA/test.csv"
+            self.test_path = r"./datasets/others/MPQA/train.csv"
+            self.metric = 'Acc'
+            self.label_texts = ["terrible", "great"]
+            self.templates = ["It's [label]", "It's' [label]", "A [label] piece of work"]
+            self.patterns = [[template.replace('[label]', label) for label in self.label_texts] for template in
+                             self.templates]
+
+        elif (dataset_name == 'Subj'):
+            self.train_path = r"./datasets/others/Subj/train.csv"
+            self.dev_path = r"./datasets/others/Subj/test.csv"
+            self.test_path = r"./datasets/others/Subj/train.csv"
+            self.metric = 'Acc'
+            self.label_texts = ["exciting", "normal"]
+            self.templates = ["It's [label]", "A [label] piece of work"]
+            self.patterns = [[template.replace('[label]', label) for label in self.label_texts] for template in
+                             self.templates]
+
+        elif (dataset_name == 'TREC'):
+            self.train_path = r"./datasets/others/TREC/train.csv"
+            self.dev_path = r"./datasets/others/TREC/test.csv"
+            self.test_path = r"./datasets/others/TREC/train.csv"
+            self.metric = 'Acc'
+            self.label_texts = ["definition", "entity", "abbreviations", "people", "place", "number"]
+            # self.label_texts = ["close", "important"]
+            self.templates = ["It's about [label]", "The answer is about a [label]"]
+            self.patterns = [[template.replace('[label]', label) for label in self.label_texts] for template in
+                             self.templates]
+
+        elif (dataset_name == 'SST-5'):
+            self.train_path = r"./datasets/others/SST-5/train.tsv"
+            self.dev_path = r"./datasets/others/SST-5/dev.tsv"
+            self.test_path = r"./datasets/others/SST-5/train.tsv"
+            self.metric = 'Acc'
+            self.label_texts = ["terrible", "bad", "okay", "good", "great"]
+            self.templates = ["[label]", "It is [label]", "That is [label]"]
+            self.patterns = [[template.replace('[label]', label) for label in self.label_texts] for template in
+                             self.templates]
+
+        elif (dataset_name == "QQP"):
+            self.train_path = r"./datasets/GLUE/QQP/train.tsv"
+            self.dev_path = r"./datasets/GLUE/QQP/dev.tsv"
+            self.test_path = r"./datasets/GLUE/QQP/train.tsv"
+            self.labels = [0, 1]
+            self.metric = 'F1'
+
+        elif (dataset_name == "MRPC"):
+            self.train_path = r"./datasets/GLUE/MRPC/msr_paraphrase_train.txt"
+            self.dev_path = r"./datasets/GLUE/MRPC/msr_paraphrase_test.txt"
+            self.test_path = r"./datasets/GLUE/MRPC/msr_paraphrase_train.txt"
+            self.labels = [0, 1]
+            self.metric = 'F1'
+
+        elif (dataset_name == "QNLI"):
+            self.train_path = r"./datasets/GLUE/QNLI/train.tsv"
+            self.dev_path = r"./datasets/GLUE/QNLI/dev.tsv"
+            self.test_path = r"./datasets/GLUE/QNLI/dev.tsv"
+            self.metric = 'Acc'
+            self.text2id = {"entailment": 1, "not_entailment": 0}
+            self.labels = [0, 1]
+
+        elif (dataset_name == "WNLI"):
+            self.train_path = r"./datasets/GLUE/WNLI/train.tsv"
+            self.dev_path = r"./datasets/GLUE/WNLI/dev.tsv"
+            self.test_path = r"./datasets/GLUE/WNLI/train.tsv"
+            self.metric = 'Acc'
+            self.labels = [0, 1]
+
+        elif (dataset_name == "MNLI-mm"):
+            self.train_path = r"./datasets/GLUE/MNLI/train.tsv"
+            self.dev_path = r"./datasets/GLUE/MNLI/dev_matched.tsv"
+            self.test_path = r"./datasets/GLUE/MNLI/dev_matched.tsv"
+            self.metric = 'Acc'
+            self.text2id = {"contradiction": 0, "neutral": 1, "entailment": 2}
+            self.labels = [0, 1, 2]
+
+        elif (dataset_name == "MNLI"):
+            self.train_path = r"./datasets/GLUE/MNLI/train.tsv"
+            self.dev_path = r"./datasets/GLUE/MNLI/dev_mismatched.tsv"
+            self.test_path = r"./datasets/GLUE/MNLI/dev_mismatched.tsv"
+            self.metric = 'Acc'
+            self.text2id = {"contradiction": 0, "neutral": 1, "entailment": 2}
+            self.labels = [0, 1, 2]
+
+        elif (dataset_name == "SNLI"):
+            self.train_path = r"./datasets/others/SNLI/train.tsv"
+            self.dev_path = r"./datasets/others/SNLI/dev.tsv"
+            self.test_path = r"./datasets/others/SNLI/test.tsv"
+            self.metric = 'Acc'
+            self.text2id = {"contradiction": 0, "neutral": 1, "entailment": 2}
+            self.labels = [0, 1, 2]
+
+
+        elif (dataset_name == "RTE"):
+            self.train_path = r"./datasets/GLUE/RTE/train.tsv"
+            self.dev_path = r"./datasets/GLUE/RTE/dev.tsv"
+            self.test_path = r"./datasets/GLUE/RTE/train.tsv"
+            self.metric = 'Acc'
+            self.text2id = {"entailment": 1, "not_entailment": 0}
+            self.labels = [0, 1]
+
+        elif (dataset_name == "STS-B"):
+            self.train_path = r"./datasets/GLUE/STS-B/train.tsv"
+            self.dev_path = r"./datasets/GLUE/STS-B/dev.tsv"
+            self.test_path = r"./datasets/GLUE/STS-B/train.tsv"
+            self.metric = 'Pear'
+            self.labels = [0, 1, 2, 3, 4, 5]
+
+
 
     def load_data(self, filename, sample_num=-1, is_train=False, is_shuffle=False):
         D = []
@@ -337,6 +504,172 @@ class Datasets():
                 for l in f:
                     D.append(json.loads(l))
 
+        elif (self.dataset_name == "QQP"):
+            with open(filename, encoding='utf-8') as f:
+                for i, l in enumerate(f.readlines()):
+                    if (i == 0):
+                        continue
+                    rows = l.strip().split('\t')
+                    text_a = rows[-3]
+                    text_b = rows[-2]
+                    label = rows[-1]
+                    D.append((text_a + "[SEP]" + text_b, int(label)))
+
+        elif (self.dataset_name == "MRPC"):
+            with open(filename, encoding='utf-8') as f:
+                for i, l in enumerate(f.readlines()):
+                    if (i == 0):
+                        continue
+                    rows = l.strip().split('\t')
+                    text_a = rows[-1]
+                    text_b = rows[-2]
+                    label = rows[0]
+                    D.append((text_a + "[SEP]" + text_b, int(label)))
+
+        elif (self.dataset_name == "QNLI"):
+            with open(filename, encoding='utf-8') as f:
+                for i, l in enumerate(f.readlines()):
+                    if (i == 0):
+                        continue
+                    rows = l.strip().split('\t')
+                    text_a = rows[-3]
+                    text_b = rows[-2]
+                    label = rows[-1]
+                    D.append((text_a + "[SEP]" + text_b, self.text2id[label]))
+
+        elif (self.dataset_name == "WNLI"):
+            with open(filename, encoding='utf-8') as f:
+                for i, l in enumerate(f.readlines()):
+                    if (i == 0):
+                        continue
+                    rows = l.strip().split('\t')
+                    text_a = rows[-3]
+                    text_b = rows[-2]
+                    label = rows[-1]
+                    D.append((text_a + "[SEP]" + text_b, int(label)))
+
+        elif (self.dataset_name == "MNLI"):
+            with open(filename, encoding='utf-8') as f:
+                for i, l in enumerate(f.readlines()):
+                    if (i == 0):
+                        continue
+                    rows = l.strip().split('\t')
+                    text_a = rows[-8]
+                    text_b = rows[-7]
+                    label = rows[-1]
+                    D.append((text_a + "[SEP]" + text_b, self.text2id[label]))
+
+        elif (self.dataset_name == "MNLI-mm"):
+            with open(filename, encoding='utf-8') as f:
+                for i, l in enumerate(f.readlines()):
+                    if (i == 0):
+                        continue
+                    rows = l.strip().split('\t')
+                    text_a = rows[-8]
+                    text_b = rows[-7]
+                    label = rows[-1]
+                    D.append((text_a + "[SEP]" + text_b, self.text2id[label]))
+
+        elif (self.dataset_name == "SNLI"):
+            with open(filename, encoding='utf-8') as f:
+                for i, l in enumerate(f.readlines()):
+                    if (i == 0):
+                        continue
+                    rows = l.strip().split('\t')
+                    text_a = rows[-8]
+                    text_b = rows[-7]
+                    label = rows[-1]
+                    D.append((text_a + "[SEP]" + text_b, self.text2id[label]))
+
+        elif (self.dataset_name == "RTE"):
+            with open(filename, encoding='utf-8') as f:
+                for i, l in enumerate(f.readlines()):
+                    if (i == 0):
+                        continue
+                    rows = l.strip().split('\t')
+                    text_a = rows[-3]
+                    text_b = rows[-2]
+                    label = rows[-1]
+                    D.append((text_a + "[SEP]" + text_b, self.text2id[label]))
+
+        elif (self.dataset_name == "CoLA"):
+            with open(filename, encoding='utf-8') as f:
+                for i, l in enumerate(f.readlines()):
+                    if (i == 0):
+                        continue
+                    rows = l.strip().split('\t')
+                    text = rows[-1]
+                    label = rows[-3]
+                    D.append((text, int(label)))
+
+        elif (self.dataset_name == "STS-B"):
+            with open(filename, encoding='utf-8') as f:
+                for i, l in enumerate(f.readlines()):
+                    if (i == 0):
+                        continue
+                    rows = l.strip().split('\t')
+                    text_a = rows[-3]
+                    text_b = rows[-2]
+                    score = rows[-1]
+                    D.append((text_a + "[SEP]" + text_b, float(score)))
+
+        elif (self.dataset_name == "SST-2"):
+            with open(filename, encoding='utf-8') as f:
+                for i, l in enumerate(f.readlines()):
+                    if (i == 0):
+                        continue
+                    rows = l.strip().split('\t')
+                    text = rows[-2]
+                    label = rows[-1]
+                    D.append((text, int(label)))
+
+        elif (self.dataset_name == "SST-5"):
+            with open(filename, encoding='utf-8') as f:
+                for i, l in enumerate(f.readlines()):
+                    text = l[2:]
+                    label = l[0]
+                    D.append((text, int(label)))
+
+        elif (self.dataset_name == "MR"):
+            with open(filename, encoding='utf-8') as f:
+                for i, l in enumerate(f.readlines()):
+                    text = l[2:]
+                    text = text.lstrip('"').rstrip('"')
+                    label = l[0]
+                    D.append((text, int(label)))
+
+        elif (self.dataset_name == "CR"):
+            with open(filename, encoding='utf-8') as f:
+                for i, l in enumerate(f.readlines()):
+                    text = l[2:]
+                    text = text.lstrip('"').rstrip('"')
+                    label = l[0]
+                    D.append((text, int(label)))
+
+        elif (self.dataset_name == "MPQA"):
+            with open(filename, encoding='utf-8') as f:
+                for i, l in enumerate(f.readlines()):
+                    text = l[2:]
+                    text = text.lstrip('"').rstrip('"')
+                    label = l[0]
+                    D.append((text, int(label)))
+
+        elif (self.dataset_name == "Subj"):
+            with open(filename, encoding='utf-8') as f:
+                for i, l in enumerate(f.readlines()):
+                    text = l[2:]
+                    text = text.lstrip('"').rstrip('"')
+                    label = l[0]
+                    D.append((text, int(label)))
+
+        elif (self.dataset_name == "TREC"):
+            with open(filename, encoding='utf-8') as f:
+                for i, l in enumerate(f.readlines()):
+                    text = l[2:]
+                    text = text.lstrip('"').rstrip('"')
+                    label = l[0]
+                    D.append((text, int(label)))
+
         # Shuffle the dataset.
         if (is_shuffle):
             random.seed(1)
@@ -377,6 +710,7 @@ class Datasets():
                         mention2id[alia].add(subject_id)
         return kb_list, mention2id, id2data, id2type
 
+
 class Model():
 
     def __init__(self, model_name=""):
@@ -388,15 +722,25 @@ class Model():
             self.checkpoint_path = './models/uncased_L-12_H-768_A-12/bert_model.ckpt'
             self.dict_path = './models/uncased_L-12_H-768_A-12/vocab.txt'
 
+        elif (model_name == 'google-bert-cased'):
+            self.config_path = './models/cased_L-12_H-768_A-12/bert_config.json'
+            self.checkpoint_path = './models/cased_L-12_H-768_A-12/bert_model.ckpt'
+            self.dict_path = './models/cased_L-12_H-768_A-12/vocab.txt'
+
         elif (model_name == 'google-bert-small'):
             self.config_path = './models/uncased_L-8_H-512_A-8/bert_config.json'
             self.checkpoint_path = './models/uncased_L-8_H-512_A-8/bert_model.ckpt'
             self.dict_path = './models/uncased_L-8_H-512_A-8/vocab.txt'
 
-        if (model_name == 'google-bert-wwm-large'):
+        elif (model_name == 'google-bert-wwm-large'):
             self.config_path = './models/wwm_uncased_L-24_H-1024_A-16/bert_config.json'
             self.checkpoint_path = './models/wwm_uncased_L-24_H-1024_A-16/bert_model.ckpt'
             self.dict_path = './models/wwm_uncased_L-24_H-1024_A-16/vocab.txt'
+
+        elif (model_name == 'google-bert-cased-wwm-large'):
+            self.config_path = './models/wwm_cased_L-24_H-1024_A-16/bert_config.json'
+            self.checkpoint_path = './models/wwm_cased_L-24_H-1024_A-16/bert_model.ckpt'
+            self.dict_path = './models/wwm_cased_L-24_H-1024_A-16/vocab.txt'
 
         elif (model_name == 'google-bert-zh'):
             self.config_path = './models/chinese_L-12_H-768_A-12/bert_config.json'
@@ -442,6 +786,12 @@ class Model():
             self.config_path = './models/albert_xlarge_zh/albert_config.json'
             self.checkpoint_path = './models/albert_xlarge_zh/model.ckpt-best'
             self.dict_path = './models/albert_xlarge_zh/vocab_chinese.txt'
+
+        elif (model_name == "albert-base-en"):
+            self.config_path = './models/albert_base_v2/albert_config.json'
+            self.checkpoint_path = './models/albert_base_v2/model.ckpt-best'
+            self.dict_path = './models/albert_base_v2/30k-clean.vocab'
+            self.spm_path = './models/albert_base_v2/30k-clean.model'
 
 
 def read_labels(label_file_path):

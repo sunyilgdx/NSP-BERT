@@ -6,15 +6,19 @@
 
 from tqdm import tqdm
 from sklearn import metrics
+from scipy.stats import pearsonr, spearmanr
 from bert4keras.tokenizers import Tokenizer
 from bert4keras.models import build_transformer_model
 from bert4keras.snippets import sequence_padding, DataGenerator
 from utils import *
+from hyper_parameters import *
 import time
 import copy
 
+
 class data_generator(DataGenerator):
     """Data Generator"""
+
     def __init__(self, is_pre=True, is_mask=False, *args, **kwargs):
         super(data_generator, self).__init__(*args, **kwargs)
         self.is_pre = is_pre
@@ -40,8 +44,8 @@ class data_generator(DataGenerator):
                 yield [batch_token_ids, batch_segment_ids], batch_labels
                 batch_token_ids, batch_segment_ids, batch_labels = [], [], []
 
-def evaluate_dev(data_generator, data, label_num, note=""):
 
+def evaluate_dev(data_generator, data, label_num, note=""):
     print("\n*******************Start to Zero-Shot predict on 【{}】*******************".format(note), flush=True)
     logits = []
     id2logit = {}
@@ -71,15 +75,26 @@ def evaluate_dev(data_generator, data, label_num, note=""):
         if (i < label_num - 1):
             thresholds[i] = logit
         start = end
-
-    confusion_matrix = metrics.confusion_matrix(trues, preds, labels=None, sample_weight=None)
-    acc = metrics.accuracy_score(trues, preds, normalize=True, sample_weight=None)
-    print("Confusion Matrix:\n{}".format(confusion_matrix), flush=True)
-    print("Acc.:\t{:.4f}".format(acc), flush=True)
+    acc = 0.0
+    if (dataset.metric != 'Pear'):
+        acc = metrics.accuracy_score(trues, preds, normalize=True, sample_weight=None)
+        confusion_matrix = metrics.confusion_matrix(trues, preds, labels=None, sample_weight=None)
+        print("Confusion Matrix:\n{}".format(confusion_matrix), flush=True)
+    if (dataset.metric == 'F1'):
+        f1 = metrics.f1_score(trues, preds)
+        print("F1:\t{:.4f}".format(f1), flush=True)
+    elif (dataset.metric == 'Pear'):
+        pear = pearsonr(trues, [float(p) for p in preds])[0]
+        print("Pear.:\t{:.4f}".format(pear), flush=True)
+    else:
+        print("Acc.:\t{:.4f}".format(acc), flush=True)
     return acc, thresholds
 
+
 def evaluate_test_batch(data_generator, data, label_num, note):
-    print("\n*******************Start to Zero-Shot predict on 【{}】 with different batch sizes*******************".format(note), flush=True)
+    print(
+        "\n*******************Start to Zero-Shot predict on 【{}】 with different batch sizes*******************".format(
+            note), flush=True)
     logits = []
     id2logit = {}
     id = 0
@@ -108,13 +123,20 @@ def evaluate_test_batch(data_generator, data, label_num, note):
                     preds[id] = i
                 start = end
 
-        # confusion_matrix = metrics.confusion_matrix(trues, preds, labels=None, sample_weight=None)
-        acc = metrics.accuracy_score(trues, preds, normalize=True, sample_weight=None)
-        # print("Confusion Matrix:\n{}".format(confusion_matrix), flush=True)
-        print("Batch size: {}\t Acc.: {:.4f}".format(batch_size, acc), flush=True)
-        batch_acc_list.append((batch_size, acc))
-        print()
-    return batch_acc_list
+        acc = 0.0
+        if (dataset.metric != 'Pear'):
+            acc = metrics.accuracy_score(trues, preds, normalize=True, sample_weight=None)
+            # confusion_matrix = metrics.confusion_matrix(trues, preds, labels=None, sample_weight=None)
+            # print("Confusion Matrix:\n{}".format(confusion_matrix), flush=True)
+        if (dataset.metric == 'F1'):
+            f1 = metrics.f1_score(trues, preds)
+            print("Batch size: {}\t F1: {:.4f}".format(batch_size, f1), flush=True)
+        elif (dataset.metric == 'Pear'):
+            pear = pearsonr(trues, [float(p) for p in preds])[0]
+            print("Batch size: {}\t Pear.: {:.4f}".format(batch_size, pear), flush=True)
+        else:
+            print("Batch size: {}\t Acc.: {:.4f}".format(batch_size, acc), flush=True)
+
 
 def evaluate_test_threshold(data_generator, data, label_num, thresholds, note):
     print("\n*******************Start to Zero-Shot predict on 【{}】 with thresholds*******************".format(
@@ -141,11 +163,21 @@ def evaluate_test_threshold(data_generator, data, label_num, thresholds, note):
             label += 1
         preds[id] = label
 
-    confusion_matrix = metrics.confusion_matrix(trues, preds, labels=None, sample_weight=None)
-    acc = metrics.accuracy_score(trues, preds, normalize=True, sample_weight=None)
-    # print("Confusion Matrix:\n{}".format(confusion_matrix), flush=True)
-    print("Acc.:\t{:.4f}".format(acc), flush=True)
+    acc = 0.0
+    if (dataset.metric != 'Pear'):
+        acc = metrics.accuracy_score(trues, preds, normalize=True, sample_weight=None)
+        confusion_matrix = metrics.confusion_matrix(trues, preds, labels=None, sample_weight=None)
+        print("Confusion Matrix:\n{}".format(confusion_matrix), flush=True)
+    if (dataset.metric == 'F1'):
+        f1 = metrics.f1_score(trues, preds)
+        print("F1:\t{:.4f}".format(f1), flush=True)
+    elif (dataset.metric == 'Pear'):
+        pear = pearsonr(trues, [float(p) for p in preds])[0]
+        print("Pear.:\t{:.4f}".format(pear), flush=True)
+    else:
+        print("Acc.:\t{:.4f}".format(acc), flush=True)
     return acc
+
 
 def divide_dict_average(dict_a: dict, M: int):
     list_a = [(k, v) for k, v in dict_a.items()]
@@ -177,6 +209,7 @@ def divide_dict_average(dict_a: dict, M: int):
 
     return sub_dicts
 
+
 def divide_dict_batch(dict_a, batch_size):
     if (batch_size >= len(dict_a)):
         return [dict_a]
@@ -196,31 +229,36 @@ def divide_dict_batch(dict_a, batch_size):
             sub_dicts.append(dict_b)
         return sub_dicts
 
-if __name__ == "__main__":
 
+if __name__ == "__main__":
     time_start = time.time()
 
     # Load the hyper-parameters-----------------------------------------------------------
-    maxlen = 128  # The max length 128 is used in our paper
+    maxlen = 256  # The max length 128 is used in our paper
     batch_size = 40  # Will not influence the results
 
+    # Choose a dataset----------------------------------------------------------------------
+    # FewCLUE
+    # dataset_names = ['ocnli', 'bustm', 'csl']
+    # GLUE
+    # dataset_names = ['MRPC', 'QQP', 'STS-B', 'MNLI', 'MNLI-mm', 'QNLI', 'RTE', 'WNLI']
+    # Others in LM-BFF
+    # dataset_names = ['SNLI' ]
+    dataset_name = 'MRPC'
+
     # Choose a model----------------------------------------------------------------------
-    # Recommend to use 'uer-mixed-bert-base'
-    # model_names = ['google-bert', 'google-bert-small', 'google-bert-zh',
-    #                'hfl-bert-wwm', 'hfl-bert-wwm-ext',
+    # Recommend to use 'uer-mixed-bert-base' and 'google-bert-cased-wwm-large'
+    # model_names = ['google-bert', 'google-bert-small', 'google-bert-cased',
+    #                'google-bert-wwm-large', 'google-bert-cased-wwm-large',
+    #                'google-bert-zh', 'hfl-bert-wwm', 'hfl-bert-wwm-ext',
     #                'uer-mixed-bert-tiny', 'uer-mixed-bert-small',
     #                'uer-mixed-bert-base', 'uer-mixed-bert-large']
-    model_name = 'uer-mixed-bert-base'
-
-    # Choose a dataset----------------------------------------------------------------------
-    # dataset_names = ['ocnli', 'bustm', 'csl']
-    dataset_name = 'bustm'
+    model_name = MODEL_NAME[dataset_name]
 
     # Prefix or Suffix.
     # Defult settings in our paper.
-    # {'bustm':True, 'ocnli':True, 'csl':False}
+    #{'bustm':True, 'ocnli':True, 'csl':False}
     is_pre = True
-
 
     # Load model and dataset class
     bert_model = Model(model_name=model_name)
@@ -253,7 +291,6 @@ if __name__ == "__main__":
 
     # Predict by thresholds.
     evaluate_test_threshold(test_generator, test_data, len(dataset.labels), thresholds=thresholds, note="Test Set")
-
 
     # Report the time cost.
     time_end = time.time()

@@ -10,6 +10,7 @@ from bert4keras.tokenizers import Tokenizer
 from bert4keras.models import build_transformer_model
 from bert4keras.snippets import sequence_padding, DataGenerator
 from utils import *
+from hyper_parameters import *
 
 class data_generator(DataGenerator):
     """Data Generator"""
@@ -36,7 +37,6 @@ class data_generator(DataGenerator):
                 batch_token_ids, batch_segment_ids, batch_output_ids = [], [], []
 
 def evaluate(data_generator_list, data, note=""):
-
     print("\n*******************Start to Zero-Shot predict on 【{}】*******************".format(note), flush=True)
     patterns_logits = [[] for _ in patterns]
     for i in range(len(data_generator_list)):
@@ -58,63 +58,74 @@ def evaluate(data_generator_list, data, note=""):
         preds.append(int(pred))
 
     confusion_matrix = metrics.confusion_matrix(trues, preds, labels=None, sample_weight=None)
-    acc = metrics.accuracy_score(trues, preds, normalize=True, sample_weight=None)
     print("Confusion Matrix:\n{}".format(confusion_matrix), flush=True)
-    print("Acc.:\t{:.4f}".format(acc), flush=True)
-    return acc
+    if (dataset.metric == 'Matthews'):
+        matthews_corrcoef = metrics.matthews_corrcoef(trues, preds)
+        print("Matthews Corrcoef:\n{}".format(matthews_corrcoef), flush=True)
+    else:
+        acc = metrics.accuracy_score(trues, preds, normalize=True, sample_weight=None)
+        print("Acc.:\t{:.4f}".format(acc), flush=True)
+        return acc
 
 if __name__ == "__main__":
 
     # Load the hyper-parameters-----------------------------------------------------------
-    maxlen = 512 # The max length 128 is used in our paper
-    batch_size = 40 # Will not influence the results
-
-    # Choose a model----------------------------------------------------------------------
-    # Recommend to use 'uer-mixed-bert-base'
-    model_names = ['google-bert', 'google-bert-small', 'google-bert-wwm-large',
-                   'google-bert-zh', 'hfl-bert-wwm', 'hfl-bert-wwm-ext',
-                   'uer-mixed-bert-tiny', 'uer-mixed-bert-small',
-                   'uer-mixed-bert-base', 'uer-mixed-bert-large']
-    model_name = 'google-bert'
+    maxlen = 256  # The max length 128 is used in our paper
+    batch_size = 40  # Will not influence the results
 
     # Choose a dataset----------------------------------------------------------------------
     # For Chinese datasets
     # dataset_names = ['eprstmt', 'tnews', 'csldcp', 'iflytek']
-    # For English dataset
+    # For English datasets in KPT
     # dataset_names = ['AGNews', 'DBPedia', 'IMDB', 'Amazon']
-    dataset_name = 'AGNews'
+    # For GLUE benchmark
+    # dataset_names = ['CoLA', 'SST-2']
+    # Others in LM-BFF
+    # dataset_names = ['SST-5', 'MR', 'CR', 'MPQA', 'Subj', 'TREC']
+    dataset_name = 'SST-2'
+
+    # Choose a model----------------------------------------------------------------------
+    # Recommend to use 'uer-mixed-bert-base' and 'google-bert-cased'
+    # model_names = ['google-bert', 'google-bert-small', 'google-bert-cased',
+    #                'google-bert-wwm-large', 'google-bert-cased-wwm-large',
+    #                'google-bert-zh', 'hfl-bert-wwm', 'hfl-bert-wwm-ext',
+    #                'uer-mixed-bert-tiny', 'uer-mixed-bert-small',
+    #                'uer-mixed-bert-base', 'uer-mixed-bert-large']
+    model_name = MODEL_NAME[dataset_name]
 
     # Load model and dataset class
     bert_model = Model(model_name=model_name)
     dataset = Datasets(dataset_name=dataset_name)
 
     # Choose a template [0, 1, 2]--------------------------------------------------------
-    patterns = dataset.patterns[-1]
+    patterns = dataset.patterns[PATTERN_INDEX[dataset_name]]
 
     # Prefix or Suffix-------------------------------------------------------------------
-    is_pre = True
+    is_pre = IS_PRE[dataset_name]
 
     # Load the dev set--------------------------------------------------------------------
     # -1 for all the samples
-    dev_data = dataset.load_data(dataset.dev_path, sample_num=1000, is_shuffle=True)
+    dev_data = dataset.load_data(dataset.dev_path, sample_num=-1, is_shuffle=True)
     dev_generator_list = []
     for p in patterns:
         dev_generator_list.append(data_generator(pattern=p, is_pre=is_pre, data=dev_data, batch_size=batch_size))
 
     # Load the test set--------------------------------------------------------------------
     # -1 for all the samples
-    test_data = dataset.load_data(dataset.test_path, sample_num=1000, is_shuffle=True)
+    test_data = dataset.load_data(dataset.test_path, sample_num=-1, is_shuffle=True)
     test_generator_list = []
     for p in patterns:
         test_generator_list.append(data_generator(pattern=p, is_pre=is_pre, data=test_data, batch_size=batch_size))
 
     # Build BERT model---------------------------------------------------------------------
     tokenizer = Tokenizer(bert_model.dict_path, do_lower_case=True)
-    # Load BERET model with NSP head
+    # Load BERT model with NSP head
     model = build_transformer_model(
-        config_path=bert_model.config_path, checkpoint_path=bert_model.checkpoint_path, with_nsp=True,
+        config_path=bert_model.config_path,
+        checkpoint_path=bert_model.checkpoint_path,
+        with_nsp=True,
     )
 
     # Zero-Shot predict and evaluate-------------------------------------------------------
     evaluate(dev_generator_list, dev_data, note="Dev Set")
-    # evaluate(test_generator_list, test_data, note="Test Set")
+    evaluate(test_generator_list, test_data, note="Test Set")
