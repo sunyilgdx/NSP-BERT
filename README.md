@@ -8,6 +8,8 @@ On the [FewCLUE benchmark](https://github.com/CLUEbenchmark/FewCLUE), our NSP-BE
 
 ## News
 
+2021/11/12 GLUE and more English datasets have been added. We can download these datasets on [LM-BFF](https://github.com/princeton-nlp/LM-BFF). Thanks to [Gao Tianyu](https://github.com/gaotianyu1350).
+
 2021/10/11 We uploaded the code on several English classification task datasets, **AG’s News, DBPedia, Amazon and IMDB**. The Acc. of NSP-BERT on those datasets are about 81.8, 70.9, 71.9 and 70.7 (We tested about 1K samples).
 Thanks to [Shengding Hu](https://github.com/ShengdingHu) and his [KnowledgeablePromptTuning](https://github.com/ShengdingHu/KnowledgeablePromptTuning).
 
