@@ -51,12 +51,24 @@ def evaluate(data_generator_list, data, note=""):
                 patterns_logits[i].append(logit_pos)
                 counter += 1
 
+    # for i, logits in enumerate(patterns_logits):
+    #     print("******************************Class {}******************************".format(i))
+    #     sorted_logits = sorted(logits, reverse=True)
+    #     for l in sorted_logits:
+    #         print("{}".format(l))
+
+
+
     # Evaluate the results
     trues = [d[1] for d in data]
     preds = []
     for i in range(len(patterns_logits[0])):
         pred = numpy.argmax([logits[i] for logits in patterns_logits])
         preds.append(int(pred))
+
+    for i in range(len(patterns_logits[0])):
+        ls = [logits[i] for logits in patterns_logits]
+        print("True:{}, Pred:{}, Neg:{:.6f}, Pos:{:.6f}, Text:{}".format(trues[i], preds[i], ls[0], ls[1], data[i]))
 
     confusion_matrix = metrics.confusion_matrix(trues, preds, labels=None, sample_weight=None)
     print("Confusion Matrix:\n{}".format(confusion_matrix), flush=True)
@@ -84,11 +96,11 @@ if __name__ == "__main__":
     # dataset_names = ['CoLA', 'SST-2']
     # Others in LM-BFF
     # dataset_names = ['SST-5', 'MR', 'CR', 'MPQA', 'Subj', 'TREC']
-    dataset_name = 'SST-2'
+    dataset_name = 'CR'
 
     # Choose a model----------------------------------------------------------------------
     # Recommend to use 'uer-mixed-bert-base' and 'google-bert-cased'
-    # model_names = ['google-bert', 'google-bert-small', 'google-bert-cased',
+    # model_names = ['google-bert-uncased', 'google-bert-small', 'google-bert-cased', 'google-bert-cased-large',
     #                'google-bert-wwm-large', 'google-bert-cased-wwm-large',
     #                'google-bert-zh', 'hfl-bert-wwm', 'hfl-bert-wwm-ext',
     #                'uer-mixed-bert-tiny', 'uer-mixed-bert-small',
@@ -108,6 +120,7 @@ if __name__ == "__main__":
     # Load the dev set--------------------------------------------------------------------
     # -1 for all the samples
     dev_data = dataset.load_data(dataset.dev_path, sample_num=-1, is_shuffle=True)
+    dev_data = sample_dataset(dev_data, K_SHOT[dataset_name])
     dev_generator_list = []
     for p in patterns:
         dev_generator_list.append(data_generator(pattern=p, is_pre=is_pre, data=dev_data, batch_size=batch_size))

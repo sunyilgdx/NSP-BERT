@@ -161,6 +161,12 @@ def evaluate_test_threshold(data_generator, data, label_num, thresholds, note):
             label += 1
         preds[id] = label
 
+    # for i, (t, p, l) in enumerate(zip(trues, preds, logits)):
+    #     print("{}:\tt:{}\tp:{}\tl:{}".format(i, t, p, l))
+    # sorted_logits = sorted(logits, reverse=True)
+    # for l in sorted_logits:
+    #     print("{}".format(l))
+
     acc = 0.0
     if (dataset.metric != 'Pear'):
         acc = metrics.accuracy_score(trues, preds, normalize=True, sample_weight=None)
@@ -232,7 +238,7 @@ if __name__ == "__main__":
     time_start = time.time()
 
     # Load the hyper-parameters-----------------------------------------------------------
-    maxlen = 256  # The max length 128 is used in our paper
+    maxlen = 256 # The max length 128 is used in our paper
     batch_size = 40  # Will not influence the results
 
     # Choose a dataset----------------------------------------------------------------------
@@ -241,12 +247,12 @@ if __name__ == "__main__":
     # GLUE
     # dataset_names = ['MRPC', 'QQP', 'STS-B', 'MNLI', 'MNLI-mm', 'QNLI', 'RTE', 'WNLI']
     # Others in LM-BFF
-    # dataset_names = ['SNLI' ]
-    dataset_name = 'MRPC'
+    # dataset_names = ['SNLI']
+    dataset_name = 'QNLI'
 
     # Choose a model----------------------------------------------------------------------
     # Recommend to use 'uer-mixed-bert-base' and 'google-bert-cased-wwm-large'
-    # model_names = ['google-bert', 'google-bert-small', 'google-bert-cased',
+    # model_names = ['google-bert-cased', 'google-bert-small', 'google-bert-cased',
     #                'google-bert-wwm-large', 'google-bert-cased-wwm-large',
     #                'google-bert-zh', 'hfl-bert-wwm', 'hfl-bert-wwm-ext',
     #                'uer-mixed-bert-tiny', 'uer-mixed-bert-small',
@@ -255,8 +261,8 @@ if __name__ == "__main__":
 
     # Prefix or Suffix.
     # Defult settings in our paper.
-    #{'bustm':True, 'ocnli':True, 'csl':False}
-    is_pre = True
+    # {'bustm':True, 'ocnli':True, 'csl':False}
+    is_pre = IS_PRE[dataset_name]
 
     # Load model and dataset class
     bert_model = Model(model_name=model_name)
@@ -264,6 +270,7 @@ if __name__ == "__main__":
 
     # Load the dev set--------------------------------------------------------------------
     dev_data = dataset.load_data(dataset.dev_path, sample_num=-1)
+    dev_data = sample_dataset(dev_data, K_SHOT[dataset_name])
     dev_generator = data_generator(is_pre=is_pre, data=dev_data, batch_size=batch_size)
 
     # Load the test set--------------------------------------------------------------------

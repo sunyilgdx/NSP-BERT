@@ -24,6 +24,7 @@ MODEL_NAME = {
     'MRPC': 'google-bert-cased-wwm-large',
     'QQP': 'google-bert-cased-wwm-large',
     'STS-B': 'google-bert-cased-wwm-large',
+    'WNLI': 'google-bert-cased-wwm-large',
     # Others in LM-BFF
     'SST-5': 'google-bert-cased',
     'MR': 'google-bert-cased',
@@ -52,13 +53,15 @@ IS_PRE = {
     # GLUE
     'CoLA': True,
     'SST-2': False,
-    'MNLI': True,
-    'MNLI-mm': True,
-    'QNLI': True,
+    'MNLI': False,
+    'MNLI-mm': False,
+    'QNLI': False,
     'RTE': True,
-    'MRPC': True,
-    'QQP': True,
+    'MRPC': False,
+    'QQP': False,
     'STS-B': True,
+    'WNLI': False,
+    'SNLI': False,
     # Others in LM-BFF
     'SST-5': False,
     'MR': True,
@@ -89,4 +92,40 @@ PATTERN_INDEX = {
     'MPQA': -1,
     'Subj': -1,
     'TREC': -1,
+}
+
+# Sample number per class
+K_SHOT = {
+    # FewCLUE
+    'eprstmt': 16,
+    'tnews': 16,
+    'csldcp': 8,
+    'iflytek': 8,
+    'bustm': -1,
+    'ocnli': -1,
+    'csl': -1,
+    # English datasets in KP
+    'AGNews': 16,
+    'DBPedia': 16,
+    'IMDB': 16,
+    'Amazon': 16,
+    # GLUE
+    'CoLA': 16,
+    'SST-2': 16,
+    'MNLI': 16,
+    'MNLI-mm': 16,
+    'QNLI': 16,
+    'RTE': 16,
+    'MRPC': 16,
+    'QQP': 16,
+    'STS-B': 96, # Regression [0, 5]
+    'WNLI': 16,
+    # Others in LM-BFF
+    'SST-5': 80,
+    'MR': 16,
+    'CR': 16,
+    'MPQA': 16,
+    'Subj': 16,
+    'TREC': 16,
+    'SNLI': 16,
 }
