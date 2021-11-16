@@ -200,8 +200,8 @@ class Datasets():
 
         elif (dataset_name == 'SST-2'):
             self.train_path = r"./datasets/GLUE/SST-2/train.tsv"
-            self.dev_path = r"./datasets/GLUE/SST-2/dev.tsv"
-            self.test_path = r"./datasets/GLUE/SST-2/train.tsv"
+            self.dev_path = r"./datasets/GLUE/SST-2/train.tsv"
+            self.test_path = r"./datasets/GLUE/SST-2/dev.tsv"
             self.metric = 'Acc'
             self.label_texts = ["terrible", "great"]
             self.templates = ["[label]", "It was [label]", "That is [label]"]
@@ -210,18 +210,18 @@ class Datasets():
 
         elif (dataset_name == 'CoLA'):
             self.train_path = r"./datasets/GLUE/CoLA/train.tsv"
-            self.dev_path = r"./datasets/GLUE/CoLA/dev.tsv"
-            self.test_path = r"./datasets/GLUE/CoLA/train.tsv"
+            self.dev_path = r"./datasets/GLUE/CoLA/train.tsv"
+            self.test_path = r"./datasets/GLUE/CoLA/dev.tsv"
             self.metric = 'Matthews'
-            self.label_texts = ["wrong", "right"]
-            self.templates = ["[label]", "That's [label]"]
+            self.label_texts = ["wrong", "correct"]
+            self.templates = ["[label]", "That's [label]", "The grammar of this sentence is [label]"]
             self.patterns = [[template.replace('[label]', label) for label in self.label_texts] for template in
                              self.templates]
 
         elif (dataset_name == 'MR'):
             self.train_path = r"./datasets/others/MR/train.csv"
-            self.dev_path = r"./datasets/others/MR/test.csv"
-            self.test_path = r"./datasets/others/MR/train.csv"
+            self.dev_path = r"./datasets/others/MR/train.csv"
+            self.test_path = r"./datasets/others/MR/test.csv"
             self.metric = 'Acc'
             self.label_texts = ["terrible", "great"]
             self.templates = ["It was [label]", "It's' [label]", "A [label] piece of work"]
@@ -230,8 +230,8 @@ class Datasets():
 
         elif (dataset_name == 'CR'):
             self.train_path = r"./datasets/others/CR/train.csv"
-            self.dev_path = r"./datasets/others/CR/test.csv"
-            self.test_path = r"./datasets/others/CR/train.csv"
+            self.dev_path = r"./datasets/others/CR/train.csv"
+            self.test_path = r"./datasets/others/CR/test.csv"
             self.metric = 'Acc'
             self.label_texts = ["terrible", "great"]
             self.templates = ["It was [label]", "It's' [label]", "A [label] piece of work"]
@@ -240,8 +240,8 @@ class Datasets():
 
         elif (dataset_name == 'MPQA'):
             self.train_path = r"./datasets/others/MPQA/train.csv"
-            self.dev_path = r"./datasets/others/MPQA/test.csv"
-            self.test_path = r"./datasets/others/MPQA/train.csv"
+            self.dev_path = r"./datasets/others/MPQA/train.csv"
+            self.test_path = r"./datasets/others/MPQA/test.csv"
             self.metric = 'Acc'
             self.label_texts = ["terrible", "great"]
             self.templates = ["It's [label]", "It's' [label]", "A [label] piece of work"]
@@ -250,8 +250,8 @@ class Datasets():
 
         elif (dataset_name == 'Subj'):
             self.train_path = r"./datasets/others/Subj/train.csv"
-            self.dev_path = r"./datasets/others/Subj/test.csv"
-            self.test_path = r"./datasets/others/Subj/train.csv"
+            self.dev_path = r"./datasets/others/Subj/train.csv"
+            self.test_path = r"./datasets/others/Subj/test.csv"
             self.metric = 'Acc'
             self.label_texts = ["exciting", "normal"]
             self.templates = ["It's [label]", "A [label] piece of work"]
@@ -260,8 +260,8 @@ class Datasets():
 
         elif (dataset_name == 'TREC'):
             self.train_path = r"./datasets/others/TREC/train.csv"
-            self.dev_path = r"./datasets/others/TREC/test.csv"
-            self.test_path = r"./datasets/others/TREC/train.csv"
+            self.dev_path = r"./datasets/others/TREC/train.csv"
+            self.test_path = r"./datasets/others/TREC/test.csv"
             self.metric = 'Acc'
             self.label_texts = ["definition", "entity", "abbreviations", "people", "place", "number"]
             # self.label_texts = ["close", "important"]
@@ -272,7 +272,7 @@ class Datasets():
         elif (dataset_name == 'SST-5'):
             self.train_path = r"./datasets/others/SST-5/train.tsv"
             self.dev_path = r"./datasets/others/SST-5/dev.tsv"
-            self.test_path = r"./datasets/others/SST-5/train.tsv"
+            self.test_path = r"./datasets/others/SST-5/test.tsv"
             self.metric = 'Acc'
             self.label_texts = ["terrible", "bad", "okay", "good", "great"]
             self.templates = ["[label]", "It is [label]", "That is [label]"]
@@ -281,21 +281,21 @@ class Datasets():
 
         elif (dataset_name == "QQP"):
             self.train_path = r"./datasets/GLUE/QQP/train.tsv"
-            self.dev_path = r"./datasets/GLUE/QQP/dev.tsv"
-            self.test_path = r"./datasets/GLUE/QQP/train.tsv"
+            self.dev_path = r"./datasets/GLUE/QQP/train.tsv"
+            self.test_path = r"./datasets/GLUE/QQP/dev.tsv"
             self.labels = [0, 1]
             self.metric = 'F1'
 
         elif (dataset_name == "MRPC"):
             self.train_path = r"./datasets/GLUE/MRPC/msr_paraphrase_train.txt"
-            self.dev_path = r"./datasets/GLUE/MRPC/msr_paraphrase_test.txt"
-            self.test_path = r"./datasets/GLUE/MRPC/msr_paraphrase_train.txt"
+            self.dev_path = r"./datasets/GLUE/MRPC/msr_paraphrase_train.txt"
+            self.test_path = r"./datasets/GLUE/MRPC/msr_paraphrase_test.txt"
             self.labels = [0, 1]
             self.metric = 'F1'
 
         elif (dataset_name == "QNLI"):
             self.train_path = r"./datasets/GLUE/QNLI/train.tsv"
-            self.dev_path = r"./datasets/GLUE/QNLI/dev.tsv"
+            self.dev_path = r"./datasets/GLUE/QNLI/train.tsv"
             self.test_path = r"./datasets/GLUE/QNLI/dev.tsv"
             self.metric = 'Acc'
             self.text2id = {"entailment": 1, "not_entailment": 0}
@@ -303,8 +303,8 @@ class Datasets():
 
         elif (dataset_name == "WNLI"):
             self.train_path = r"./datasets/GLUE/WNLI/train.tsv"
-            self.dev_path = r"./datasets/GLUE/WNLI/dev.tsv"
-            self.test_path = r"./datasets/GLUE/WNLI/train.tsv"
+            self.dev_path = r"./datasets/GLUE/WNLI/train.tsv"
+            self.test_path = r"./datasets/GLUE/WNLI/dev.tsv"
             self.metric = 'Acc'
             self.labels = [0, 1]
 
@@ -335,16 +335,16 @@ class Datasets():
 
         elif (dataset_name == "RTE"):
             self.train_path = r"./datasets/GLUE/RTE/train.tsv"
-            self.dev_path = r"./datasets/GLUE/RTE/dev.tsv"
-            self.test_path = r"./datasets/GLUE/RTE/train.tsv"
+            self.dev_path = r"./datasets/GLUE/RTE/train.tsv"
+            self.test_path = r"./datasets/GLUE/RTE/dev.tsv"
             self.metric = 'Acc'
             self.text2id = {"entailment": 1, "not_entailment": 0}
             self.labels = [0, 1]
 
         elif (dataset_name == "STS-B"):
             self.train_path = r"./datasets/GLUE/STS-B/train.tsv"
-            self.dev_path = r"./datasets/GLUE/STS-B/dev.tsv"
-            self.test_path = r"./datasets/GLUE/STS-B/train.tsv"
+            self.dev_path = r"./datasets/GLUE/STS-B/train.tsv"
+            self.test_path = r"./datasets/GLUE/STS-B/dev.tsv"
             self.metric = 'Pear'
             self.labels = [0, 1, 2, 3, 4, 5]
 
@@ -511,6 +511,7 @@ class Datasets():
                     text_a = rows[-3]
                     text_b = rows[-2]
                     label = rows[-1]
+                    text_a = text_a + " which means "
                     D.append((text_a + "[SEP]" + text_b, int(label)))
 
         elif (self.dataset_name == "MRPC"):
@@ -522,6 +523,7 @@ class Datasets():
                     text_a = rows[-1]
                     text_b = rows[-2]
                     label = rows[0]
+                    text_a = text_a + " which means "
                     D.append((text_a + "[SEP]" + text_b, int(label)))
 
         elif (self.dataset_name == "QNLI"):
@@ -533,6 +535,7 @@ class Datasets():
                     text_a = rows[-3]
                     text_b = rows[-2]
                     label = rows[-1]
+                    text_a = text_a + " which means "
                     D.append((text_a + "[SEP]" + text_b, self.text2id[label]))
 
         elif (self.dataset_name == "WNLI"):
@@ -555,6 +558,7 @@ class Datasets():
                     text_a = rows[-8]
                     text_b = rows[-7]
                     label = rows[-1]
+                    text_a = text_a + " which means "
                     D.append((text_a + "[SEP]" + text_b, self.text2id[label]))
 
         elif (self.dataset_name == "MNLI-mm"):
@@ -566,6 +570,7 @@ class Datasets():
                     text_a = rows[-8]
                     text_b = rows[-7]
                     label = rows[-1]
+                    text_a = text_a + " which means "
                     D.append((text_a + "[SEP]" + text_b, self.text2id[label]))
 
         elif (self.dataset_name == "SNLI"):
@@ -577,6 +582,7 @@ class Datasets():
                     text_a = rows[-8]
                     text_b = rows[-7]
                     label = rows[-1]
+                    text_a = text_a + " which means "
                     D.append((text_a + "[SEP]" + text_b, self.text2id[label]))
 
         elif (self.dataset_name == "RTE"):
@@ -609,6 +615,7 @@ class Datasets():
                     text_a = rows[-3]
                     text_b = rows[-2]
                     score = rows[-1]
+                    text_a = text_a + " which means "
                     D.append((text_a + "[SEP]" + text_b, float(score)))
 
         elif (self.dataset_name == "SST-2"):
@@ -715,7 +722,7 @@ class Model():
         self.model_name = model_name
         self.config_path, self.checkpoint_path, self.dict_path = "", "", ""
 
-        if (model_name == 'google-bert'):
+        if (model_name == 'google-bert-uncased'):
             self.config_path = './models/uncased_L-12_H-768_A-12/bert_config.json'
             self.checkpoint_path = './models/uncased_L-12_H-768_A-12/bert_model.ckpt'
             self.dict_path = './models/uncased_L-12_H-768_A-12/vocab.txt'
@@ -724,6 +731,11 @@ class Model():
             self.config_path = './models/cased_L-12_H-768_A-12/bert_config.json'
             self.checkpoint_path = './models/cased_L-12_H-768_A-12/bert_model.ckpt'
             self.dict_path = './models/cased_L-12_H-768_A-12/vocab.txt'
+
+        elif (model_name == 'google-bert-cased-large'):
+            self.config_path = './models/cased_L-24_H-1024_A-16/bert_config.json'
+            self.checkpoint_path = './models/cased_L-24_H-1024_A-16/bert_model.ckpt'
+            self.dict_path = './models/cased_L-24_H-1024_A-16/vocab.txt'
 
         elif (model_name == 'google-bert-small'):
             self.config_path = './models/uncased_L-8_H-512_A-8/bert_config.json'
@@ -801,6 +813,34 @@ def read_labels(label_file_path):
             labels_text.append(label)
             text2id[label] = index
     return labels_text, text2id
+
+
+def sample_dataset(data: list, k_shot: int, label_num=-1):
+    if(k_shot==-1):
+        return data
+    label_set = set()
+    label2samples = {}
+    for d in data:
+        (text, label) = d
+        label_set.add(label)
+        if (label in label2samples):
+            label2samples[label].append(d)
+        else:
+            label2samples[label] = [d]
+    if (label_num != -1):
+        assert len(label_set) == label_num
+    new_data = []
+    for label in label_set:
+        if (isinstance(label, float)):
+            random.seed(0)
+            new_data = random.sample(data, k_shot)
+            random.shuffle(new_data)
+            return new_data
+        random.seed(0)
+        new_data += random.sample(label2samples[label], k_shot)
+    random.seed(0)
+    random.shuffle(new_data)
+    return new_data
 
 # if __name__ == "__main__":
 #     print()

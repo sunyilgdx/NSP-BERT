@@ -248,7 +248,7 @@ if __name__ == "__main__":
     # dataset_names = ['MRPC', 'QQP', 'STS-B', 'MNLI', 'MNLI-mm', 'QNLI', 'RTE', 'WNLI']
     # Others in LM-BFF
     # dataset_names = ['SNLI']
-    dataset_name = 'QNLI'
+    dataset_name = 'QQP'
 
     # Choose a model----------------------------------------------------------------------
     # Recommend to use 'uer-mixed-bert-base' and 'google-bert-cased-wwm-large'

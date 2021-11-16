@@ -57,8 +57,6 @@ def evaluate(data_generator_list, data, note=""):
     #     for l in sorted_logits:
     #         print("{}".format(l))
 
-
-
     # Evaluate the results
     trues = [d[1] for d in data]
     preds = []
@@ -66,9 +64,9 @@ def evaluate(data_generator_list, data, note=""):
         pred = numpy.argmax([logits[i] for logits in patterns_logits])
         preds.append(int(pred))
 
-    for i in range(len(patterns_logits[0])):
-        ls = [logits[i] for logits in patterns_logits]
-        print("True:{}, Pred:{}, Neg:{:.6f}, Pos:{:.6f}, Text:{}".format(trues[i], preds[i], ls[0], ls[1], data[i]))
+    # for i in range(len(patterns_logits[0])):
+    #     ls = [logits[i] for logits in patterns_logits]
+    #     print("True:{}, Pred:{}, Neg:{:.6f}, Pos:{:.6f}, Text:{}".format(trues[i], preds[i], ls[0], ls[1], data[i]))
 
     confusion_matrix = metrics.confusion_matrix(trues, preds, labels=None, sample_weight=None)
     print("Confusion Matrix:\n{}".format(confusion_matrix), flush=True)
@@ -96,7 +94,7 @@ if __name__ == "__main__":
     # dataset_names = ['CoLA', 'SST-2']
     # Others in LM-BFF
     # dataset_names = ['SST-5', 'MR', 'CR', 'MPQA', 'Subj', 'TREC']
-    dataset_name = 'CR'
+    dataset_name = 'eprstmt'
 
     # Choose a model----------------------------------------------------------------------
     # Recommend to use 'uer-mixed-bert-base' and 'google-bert-cased'

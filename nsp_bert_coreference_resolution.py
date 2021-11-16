@@ -130,6 +130,10 @@ def evaluate_test_threshold(data_generator, data, label_num, thresholds, note):
             id2logit[id] = logit_pos
             id += 1
 
+    sorted_logits = sorted(logits, reverse=True)
+    for l in sorted_logits:
+        print("{}".format(l))
+
     # Evaluate the results
     trues = [d[1] for d in data]
     preds = [0] * len(data)
