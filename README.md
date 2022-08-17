@@ -8,6 +8,9 @@ On the [FewCLUE benchmark](https://github.com/CLUEbenchmark/FewCLUE), our NSP-BE
 
 ## News
 
+**2022/8/17 New version!** For both zero-shot and few-shot NSP-BERT, English and Chinese. Baselines such as fine-tuning, NSP and PET are also implemented.
+https://github.com/sunyilgdx/Prompts4Keras
+
 **2022/6/16 There will be a major update soon！！！**
 
 2021/11/12 **GLUE** and more English datasets have been added. We can download these datasets on [LM-BFF](https://github.com/princeton-nlp/LM-BFF). Thanks to [Gao Tianyu](https://github.com/gaotianyu1350).
