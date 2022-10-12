@@ -191,4 +191,18 @@ NSP-BERT
     archivePrefix={arXiv},
     primaryClass={cs.CL}
 }
+@inproceedings{sun-etal-2022-nsp,
+    title = "{NSP}-{BERT}: A Prompt-based Few-Shot Learner through an Original Pre-training Task {---}{---} Next Sentence Prediction",
+    author = "Sun, Yi  and
+      Zheng, Yu  and
+      Hao, Chao  and
+      Qiu, Hangping",
+    booktitle = "Proceedings of the 29th International Conference on Computational Linguistics",
+    month = oct,
+    year = "2022",
+    address = "Gyeongju, Republic of Korea",
+    publisher = "International Committee on Computational Linguistics",
+    url = "https://aclanthology.org/2022.coling-1.286",
+    pages = "3233--3250"
+}
 ```
