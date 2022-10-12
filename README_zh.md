@@ -7,6 +7,7 @@
 在[FewCLUE benchmark](https://github.com/CLUEbenchmark/FewCLUE)评测集上的部分任务中, 我们的 NSP-BERT性能远超其他 zero-shot 方法 (GPT-1-zero and PET-zero). 我们希望 NSP-BERT 能够成为一个可以辅助其他语言模型的一个无监督工具.
 
 ## 新闻
+2022/10/12 (忘记在中文里面更新了) 请移步至https://github.com/sunyilgdx/Prompts4Keras ,包含NSP-BERT的小样本代码，还有PET、EFL、Fine-tuning的中英文版本实现，均是基于bert4keras的
 2022/08/10 即将更新Few-shot部分代码。
 
 2021/10/11 我们上传了几个英文分类任务的代码，**AG’s News, DBPedia, Amazon and IMDB**，经过简单的测试（1K测试样本），准备率大约为81.8, 70.9, 71.9 和 70.7。十分感谢[Shengding Hu](https://github.com/ShengdingHu)和他的[KnowledgeablePromptTuning](https://github.com/ShengdingHu/KnowledgeablePromptTuning).
