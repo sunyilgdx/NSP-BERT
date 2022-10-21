@@ -41,7 +41,7 @@ tensorflow-gpu 1.15.0
 
 ## Downloads
 ### Models
-We should dowmload the checkpoints of different models. The *vocab.txt* and the *config.json* are already in our [repository](https://github.com/sunyilgdx/NSP-BERT/tree/main/models).
+We should download the checkpoints of different models. The *vocab.txt* and the *config.json* are already in our [repository](https://github.com/sunyilgdx/NSP-BERT/tree/main/models).
 
 | Organization                                      | Model Name       | Model Parameters      | Download Linking                                                                                | Tips |
 |---------------------------------------------------|------------------|-----------------------|-------------------------------------------------------------------------------------------------|------|
